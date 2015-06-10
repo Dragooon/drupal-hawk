@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * Implements hook_requirements().
+ *
+ * @param string $phase
+ * @return array
+ */
+function hawk_requirements($phase) {
+    $requirements = array();
+
+    $requirements['hawk'] = [
+        'title' => t('PHP Hawk'),
+        'value' => class_exists('\\Dragooon\\Hawk\\Hawk') ? t('PHP Hawk library found') : t('PHP Hawk library not found'),
+    ];
+
+    if (!class_exists('\\Dragooon\\Hawk\\Hawk')) {
+        $requirements['hawk'] += [
+            'severity' => REQUIREMENT_ERROR,
+            'description' => t("Hawk module requires the <a href='!hawk_url' target='_blank'>PHP Hawk</a> library.",
+                ['!oauth_url' => 'http://github.com/Dragooon/php-hawk']),
+        ];
+    }
+
+    return $requirements;
+}
+
+/**
+ * Implements hook_schema().
+ *
+ * @return array
+ */
+function hawk_schema() {
+    $schema = [];
+
+    $schema['hawk_credentials'] = [
+        'description' => 'IDs, Keys and algos for Hawk users.',
+        'fields' => [
+            'cid' => [
+                'type'        => 'serial',
+                'description' => 'Primary ID field for the table, gives each credential an unique ID. Internal usage mostly.',
+                'not null'    => TRUE,
+            ],
+            'uid' => [
+                'description' => 'The application owner, Drupal user.',
+                'type'        => 'int',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ],
+            'key_secret' => [
+                'description' => 'The key itself',
+                'type'        => 'text',
+                'not null'    => TRUE,
+            ],
+            'key_algo' => [
+                'description' => 'Algorithm used for generating the key.',
+                'type'        => 'char',
+                'length'      => 40,
+                'not null'    => TRUE,
+            ],
+        ],
+        'primary key' => ['cid'],
+        'indexes' => [
+            'uid' => ['uid'],
+        ],
+        'foreign keys' => [
+            'users' => [
+                'table' => 'users',
+                'columns' => ['uid' => 'uid'],
+            ],
+        ],
+    ];
+
+    return $schema;
+}
