@@ -1,0 +1,34 @@
+{
+  "name": "Drupal/hawk",
+  "description": "Hawk",
+  "keywords": [
+    "hawk",
+    "authentication",
+    "bewit",
+    "protocol",
+    "drupal",
+    "module"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shitiz Garg",
+      "email": "mail@dragooon.net",
+      "homepage": "http://dragooon.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Drupal\\Hawk\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/Dragooon/php-hawk"
+    }
+  ],
+  "require": {
+    "Dragooon/hawk": "dev-master"
+  }
+}
