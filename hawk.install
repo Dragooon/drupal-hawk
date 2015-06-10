@@ -9,6 +9,10 @@
 function hawk_requirements($phase) {
     $requirements = array();
 
+    if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+        require_once(dirname(__FILE__) . '/vendor/autoload.php');
+    }
+
     $requirements['hawk'] = [
         'title' => t('PHP Hawk'),
         'value' => class_exists('\\Dragooon\\Hawk\\Hawk') ? t('PHP Hawk library found') : t('PHP Hawk library not found'),
