@@ -1,0 +1,6 @@
+name: Hawk Authentication
+type: module
+description: "Provides Hawk server authentication"
+package: Web services
+# core: 8.x
+configure: admin/config/services/hawk
