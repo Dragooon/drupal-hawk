@@ -18,11 +18,11 @@ function hawk_requirements($phase) {
     'value' => class_exists('\\Dragooon\\Hawk\\Hawk') ? t('PHP Hawk library found') : t('PHP Hawk library not found'),
   ];
 
-  if (!class_exists('\\Dragooon\\Hawk\\Hawk')) {
+  if (!class_exists('\\Dragooon\\Hawk\\Client\\Client')) {
     $requirements['hawk'] += [
       'severity' => REQUIREMENT_ERROR,
       'description' => t("Hawk module requires the <a href='!hawk_url' target='_blank'>PHP Hawk</a> library.",
-        ['!oauth_url' => 'http://github.com/Dragooon/php-hawk']),
+        ['!hawk_url' => 'http://github.com/Dragooon/php-hawk']),
     ];
   }
 
