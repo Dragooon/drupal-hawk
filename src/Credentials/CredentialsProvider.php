@@ -3,6 +3,7 @@
 namespace Drupal\Hawk\Credentials;
 
 use Dragooon\Hawk\Credentials\Credentials;
+use Dragooon\Hawk\Credentials\CredentialsNotFoundException;
 use Dragooon\Hawk\Credentials\CredentialsProviderInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 
@@ -27,7 +28,7 @@ class CredentialsProvider implements CredentialsProviderInterface {
     $credential = $this->entityManager->getStorage('hawk_credential')->load($id);
 
     if (empty($credential)) {
-      return false;
+      throw new CredentialsNotFoundException($id . ' is not a valid credential ID');
     }
 
     return new Credentials($credential->getKeySecret(), $credential->getKeyAlgo(), $credential->id());
