@@ -1,27 +1,28 @@
 services:
   authentication.hawk:
-    class: Drupal\Hawk\Authentication\Provider\Hawk
+    class: Drupal\hawk\Authentication\Provider\Hawk
     arguments: [ '@hawk.server' ]
     tags:
       - { name: authentication_provider, provider_id: hawk, priority: 50 }
   hawk.server:
-    class: Dragooon\Hawk\Server\Server
+    class: Dragooon\hawk\Server\Server
     arguments: [ '@hawk.crypto', '@hawk.credentials_provider', '@hawk.time_provider', '@hawk.nonce_validator' ]
     tags:
       - { name: hawk_server_provider }
   hawk.crypto:
-    class: Dragooon\Hawk\Crypto\Crypto
+    class: Dragooon\hawk\Crypto\Crypto
     tags:
       - { name: hawk_crypto }
   hawk.credentials_provider:
-    class: Drupal\Hawk\Credentials\CredentialsProvider
+    class: Drupal\hawk\Credentials\CredentialsProvider
+    arguments: ['@entity.manager']
     tags:
       - { name: hawk_credentials_provider }
   hawk.time_provider:
-    class: Dragooon\Hawk\Time\TimeProvider
+    class: Dragooon\hawk\Time\TimeProvider
     tags:
       - { name: hawk_time_provider }
   hawk.nonce_validator:
-    class: Drupal\Hawk\Nonce\NonceValidator
+    class: Drupal\hawk\Nonce\NonceValidator
     tags:
       - { name: hawk_nonce_validator }
