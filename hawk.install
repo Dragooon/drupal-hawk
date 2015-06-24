@@ -42,7 +42,7 @@ function hawk_schema() {
     'fields' => [
       'cid' => [
         'type' => 'serial',
-        'description' => 'Primary ID field for the table, gives each credential an unique ID. Internal usage mostly.',
+        'description' => 'Primary ID field for the table, gives each credential an unique ID.',
         'not null' => TRUE,
       ],
       'uid' => [
