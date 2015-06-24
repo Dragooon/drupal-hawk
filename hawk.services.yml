@@ -1,12 +1,12 @@
 services:
   authentication.hawk:
     class: Drupal\hawk\Authentication\Provider\Hawk
-    arguments: [ '@hawk.server' ]
+    arguments: [ '@hawk.server', '@entity.manager' ]
     tags:
       - { name: authentication_provider, provider_id: hawk, priority: 100 }
   hawk.server:
     class: Dragooon\Hawk\Server\Server
-    arguments: [ '@hawk.crypto', '@hawk.credentials_provider', '@hawk.time_provider', '@hawk.nonce_validator' ]
+    arguments: [ '@hawk.crypto', '@hawk.credentials_provider', '@hawk.time_provider', '@hawk.nonce_validator', 60, 0 ]
     tags:
       - { name: hawk_server_provider }
   hawk.crypto:
