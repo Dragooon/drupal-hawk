@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dragooon/php-hawk.git",
-                "reference": "140bc784c474dc85a873503628aa635490f0dabb"
+                "reference": "ae702c972ceaab06a7d1bd536be94c4e4bcf408c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dragooon/php-hawk/zipball/140bc784c474dc85a873503628aa635490f0dabb",
-                "reference": "140bc784c474dc85a873503628aa635490f0dabb",
+                "url": "https://api.github.com/repos/Dragooon/php-hawk/zipball/ae702c972ceaab06a7d1bd536be94c4e4bcf408c",
+                "reference": "ae702c972ceaab06a7d1bd536be94c4e4bcf408c",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
                 "source": "https://github.com/Dragooon/php-hawk/tree/master",
                 "issues": "https://github.com/Dragooon/php-hawk/issues"
             },
-            "time": "2015-06-23 13:09:02"
+            "time": "2015-06-24 20:02:50"
         },
         {
             "name": "ircmaxell/random-lib",

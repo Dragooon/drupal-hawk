@@ -49,7 +49,7 @@ class Hawk implements AuthenticationProviderInterface {
         $request->getHost(),
         $request->getPort(),
         $request->getRequestUri(),
-        $request->getContentType(),
+        $request->headers->get('content_type'),
         $request->getContent(),
         $request->headers->get('authorization')
       );
