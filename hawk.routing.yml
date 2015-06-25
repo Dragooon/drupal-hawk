@@ -1,6 +1,13 @@
-hawk.user_credentials:
-  path: 'user/{user}/hawk/credentials'
+hawk.user_credential:
+  path: 'user/{user}/hawk/credential'
   defaults:
-    _content: 'Drupal\hawk\Controller\Hawk::credentials'
+    _controller: '\Drupal\hawk\Controller\Hawk::credential'
+  requirements:
+    _permission: 'access own credentials'
+
+hawk.user_credential_add:
+  path: 'hawk/credential/add'
+  defaults:
+    _controller: '\Drupal\hawk\Controller\Hawk::addCredential'
   requirements:
     _permission: 'access own credentials'

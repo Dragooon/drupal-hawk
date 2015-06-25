@@ -3,9 +3,8 @@
 namespace Drupal\hawk\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\user\Plugin\views\argument_validator\User;
+use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\user\UserInterface;
 use Drupal\hawk\HawkCredentialStorageInterface;
 
@@ -22,7 +21,6 @@ class Hawk extends ControllerBase {
    * @param HawkCredentialStorageInterface $hawkCredentialStorage
    */
   public function __construct(HawkCredentialStorageInterface $hawkCredentialStorage) {
-    die('test');
     $this->hawkCredentialStorage = $hawkCredentialStorage;
   }
 
@@ -32,7 +30,7 @@ class Hawk extends ControllerBase {
   public static function create(ContainerInterface $container) {
     /** @var \Drupal\Core\Entity\EntityManagerInterface $entity_manager */
     $entityManager = $container->get('entity.manager');
-die('test');
+
     return new static(
       $entityManager->getStorage('hawk_credential')
     );
@@ -44,8 +42,49 @@ die('test');
    * @param UserInterface $user
    * @return array
    */
-  public function credentials(UserInterface $user) {
+  public function credential(UserInterface $user) {
+    /** @var \Drupal\hawk\Entity\HawkCredentialInterface[] $credentials */
     $credentials = $this->hawkCredentialStorage->loadByProperties(array('uid' => $user->id()));
-    die(var_dump($credentials));
+
+    $list = [];
+
+    $list['heading']['#markup'] = $this->t('<a href="!url">Add Credential</a>', [
+      '!url' => Url::fromRoute('hawk.user_credential_add')->toString(),
+    ]);
+
+    $list['credentials'] = [
+      '#type' => 'table',
+      '#header' => [
+        'key_id' => [
+          'data' => t('ID'),
+        ],
+        'key_secret' => [
+          'data' => t('Key Secret'),
+        ],
+        'key_algo' => [
+          'data' => t('Key Algorithm'),
+        ],
+      ],
+      '#rows' => [],
+    ];
+
+    foreach ($credentials as $credential) {
+      $list['credentials']['#rows'][] = [
+        'key_id' => $credential->id(),
+        'key_secret' => $credential->getKeySecret(),
+        'key_algo' => $credential->getKeyAlgo(),
+      ];
+    }
+
+    return $list;
+  }
+
+  /**
+   * Adds a credential to the current user
+   *
+   * @return void
+   */
+  public function addCredential() {
+
   }
 }
