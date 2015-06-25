@@ -14,8 +14,8 @@ use Drupal\user\UserInterface;
  *   id = "hawk_credential",
  *   label = @Translation("Hawk Credential"),
  *   handlers = {
- *     "storage" = "Drupal\Core\Entity\Sql\SqlContentEntityStorage",
- *     "storage_schema" = "Drupal\Core\Entity\Sql\SqlContentEntityStorageSchema",
+ *     "storage" = "Drupal\hawk\HawkCredentialStorage",
+ *     "storage_schema" = "Drupal\hawk\HawkCredentialStorageSchema",
  *   },
  *   base_table = "hawk_credentials",
  *   entity_keys = {
@@ -23,7 +23,7 @@ use Drupal\user\UserInterface;
  *   }
  * )
  */
-class HawkCredential extends ContentEntityBase {
+class HawkCredential extends ContentEntityBase implements HawkCredentialInterface {
 
   /**
    * @return int
