@@ -8,6 +8,8 @@ hawk.user_credential:
 hawk.user_credential_add:
   path: 'hawk/credential/add'
   defaults:
-    _controller: '\Drupal\hawk\Controller\Hawk::addCredential'
+    _form: 'Drupal\hawk\Form\HawkAddCredential'
+    _title: 'Add a Hawk credential'
   requirements:
     _permission: 'access own credentials'
+    _user_is_logged_in: 'TRUE'
