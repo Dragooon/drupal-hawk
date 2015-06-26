@@ -13,3 +13,11 @@ hawk.user_credential_add:
   requirements:
     _permission: 'access own credentials'
     _user_is_logged_in: 'TRUE'
+
+hawk.user_credential_delete:
+  path: 'hawk/credential/delete/{cid}'
+  defaults:
+    _form: 'Drupal\hawk\Form\HawkDeleteCredential'
+  requirements:
+    _permission: 'access own credentials'
+    _user_is_logged_in: 'TRUE'

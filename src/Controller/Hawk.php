@@ -66,6 +66,9 @@ class Hawk extends ControllerBase {
         'key_algo' => [
           'data' => t('Key Algorithm'),
         ],
+        'operations' => [
+          'data' => t('Operations'),
+        ],
       ],
       '#rows' => [],
     ];
@@ -75,6 +78,17 @@ class Hawk extends ControllerBase {
         'key_id' => $credential->id(),
         'key_secret' => $credential->getKeySecret(),
         'key_algo' => $credential->getKeyAlgo(),
+        'operations' => [
+          'data' => [
+            '#type' => 'operations',
+            '#links' => [
+              'delete' => [
+                'title' => t('Delete'),
+                'url' => Url::fromRoute('hawk.user_credential_delete', ['cid' => $credential->id()]),
+              ],
+            ],
+          ],
+        ],
       ];
     }
 
