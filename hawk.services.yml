@@ -26,3 +26,9 @@ services:
     class: Drupal\Hawk\Nonce\NonceValidator
     tags:
       - { name: hawk_nonce_validator }
+  hawk.page_cache_request_policy.disallow_hawk_requests:
+      class: Drupal\hawk\PageCache\DisallowHawkRequests
+      public: false
+      arguments: [ '@hawk.server' ]
+      tags:
+        - { name: page_cache_request_policy }
