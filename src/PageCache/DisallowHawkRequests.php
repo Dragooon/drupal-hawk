@@ -3,7 +3,9 @@
 namespace Drupal\hawk\PageCache;
 
 // hawk.module isn't loaded at this point of execution
-require_once(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php');
+if (file_exists(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php')) {
+  require_once(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php');
+}
 
 use Dragooon\Hawk\Server\ServerInterface;
 use Drupal\Core\PageCache\RequestPolicyInterface;
@@ -36,7 +38,9 @@ class DisallowHawkRequests implements RequestPolicyInterface {
    * {@inheritDoc}
    */
   public function check(Request $request) {
-    return $this->server->checkRequestForHawk($request->headers->get('authorization'));
+    if ($this->server->checkRequestForHawk($request->headers->get('authorization'))) {
+      return self::DENY;
+    }
   }
 
 }
