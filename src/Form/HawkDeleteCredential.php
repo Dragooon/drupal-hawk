@@ -3,10 +3,7 @@
 namespace Drupal\hawk\Form;
 
 use Drupal\Core\Entity\ContentEntityDeleteForm;
-use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\hawk\Entity\HawkCredentialStorageInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class HawkDeleteCredential extends ContentEntityDeleteForm {
