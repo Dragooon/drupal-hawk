@@ -3,7 +3,7 @@ hawk.user_credential:
   defaults:
     _controller: '\Drupal\hawk\Controller\Hawk::credential'
   requirements:
-    _permission: 'access own credentials'
+    _custom_access: '\Drupal\hawk\Controller\Hawk::access'
   options:
     _admin_route: TRUE
 
@@ -13,7 +13,7 @@ hawk.user_credential_add:
     _form: 'Drupal\hawk\Form\HawkAddCredential'
     _title: 'Add a Hawk credential'
   requirements:
-    _permission: 'access own credentials'
+    _entity_create_access: 'hawk_credential'
     _user_is_logged_in: 'TRUE'
   options:
     _admin_route: TRUE
@@ -23,8 +23,7 @@ hawk.user_credential_delete:
   defaults:
     _entity_form: 'hawk_credential.delete'
   requirements:
-    _permission: 'access own credentials'
-    _user_is_logged_in: 'TRUE'
+    _entity_access: 'hawk_credential.delete'
   options:
     _admin_route: TRUE
     parameters:

@@ -2,13 +2,19 @@
 
 namespace Drupal\hawk\Controller;
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Routing\Access\AccessInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\user\UserInterface;
 use Drupal\hawk\Entity\HawkCredentialStorageInterface;
+use Symfony\Component\Routing\Route;
 
-class Hawk extends ControllerBase {
+class Hawk extends ControllerBase implements AccessInterface {
 
   /**
    * @var \Drupal\hawk\Entity\HawkCredentialStorageInterface
@@ -89,4 +95,26 @@ class Hawk extends ControllerBase {
     return $list;
   }
 
+  /**
+   * Checks for access for viewing a user's hawk credentials
+   *
+   * @param Route $route
+   *    The route to check against
+   * @param RouteMatchInterface $route_match
+   *    The current route being accessed
+   * @param AccountInterface $account
+   *    The account currently logged in
+   * @return AccessResultInterface
+   */
+  public function access(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {
+    if ($route_match->getRouteName() == 'hawk.user_credential') {
+      /** @var AccountInterface $user */
+      $user = $route_match->getParameter('user');
+
+      return AccessResult::allowedIf(
+        $account->hasPermission('administer hawk') ||
+        ($account->hasPermission('access own hawk credentials') && $account->id() == $user->id())
+      );
+    }
+  }
 }
