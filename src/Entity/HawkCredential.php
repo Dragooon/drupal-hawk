@@ -14,8 +14,8 @@ use Drupal\user\UserInterface;
  *   id = "hawk_credential",
  *   label = @Translation("Hawk Credential"),
  *   handlers = {
- *     "storage" = "Drupal\hawk\HawkCredentialStorage",
- *     "storage_schema" = "Drupal\hawk\HawkCredentialStorageSchema",
+ *     "storage" = "Drupal\hawk\Entity\HawkCredentialStorage",
+ *     "storage_schema" = "Drupal\hawk\Entity\HawkCredentialStorageSchema",
  *   },
  *   base_table = "hawk_credentials",
  *   entity_keys = {

@@ -6,14 +6,12 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\user\UserInterface;
-use Drupal\hawk\HawkCredentialStorageInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Drupal\hawk\Entity\HawkCredentialStorageInterface;
 
 class Hawk extends ControllerBase {
 
   /**
-   * @var \Drupal\hawk\HawkCredentialStorageInterface
+   * @var \Drupal\hawk\Entity\HawkCredentialStorageInterface
    */
   protected $hawkCredentialStorage;
 

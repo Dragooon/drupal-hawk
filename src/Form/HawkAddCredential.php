@@ -4,13 +4,13 @@ namespace Drupal\hawk\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\hawk\HawkCredentialStorageInterface;
+use Drupal\hawk\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class HawkAddCredential extends FormBase {
 
   /**
-   * @var \Drupal\hawk\HawkCredentialStorageInterface
+   * @var \Drupal\hawk\Entity\HawkCredentialStorageInterface
    */
   protected $hawkCredentialStorage;
 
