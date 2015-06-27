@@ -1,4 +1,25 @@
 <?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
 if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
   require_once(dirname(__FILE__) . '/vendor/autoload.php');
+}
+
+/**
+ * Implements hook_help().
+ *
+ * @param string $route_name
+ * @param RouteMatchInterface $route_match
+ * @return string
+ */
+function hawk_help($route_name, $route_match) {
+  switch ($route_name) {
+    case 'hawk.user_credential':
+      $output = '<p>' . t('This page lists all the valid Hawk Credentials associated with your account. ' .
+                          'When provuding ID for the client, use the ID listed against the key secret and not your ' .
+                          'account ID.') . '</p>';
+      return $output;
+
+  }
 }

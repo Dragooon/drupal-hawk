@@ -50,10 +50,6 @@ class Hawk extends ControllerBase {
 
     $list = [];
 
-    $list['heading']['#markup'] = $this->t('<a href="!url">Add Credential</a>', [
-      '!url' => Url::fromRoute('hawk.user_credential_add')->toString(),
-    ]);
-
     $list['credentials'] = [
       '#type' => 'table',
       '#header' => [

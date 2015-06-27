@@ -1,0 +1,5 @@
+hawk.user_credential_add:
+  route_name: hawk.user_credential_add
+  title: 'Add Credential'
+  appears_on:
+    - hawk.user_credential

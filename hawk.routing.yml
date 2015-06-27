@@ -4,6 +4,8 @@ hawk.user_credential:
     _controller: '\Drupal\hawk\Controller\Hawk::credential'
   requirements:
     _permission: 'access own credentials'
+  options:
+    _admin_route: TRUE
 
 hawk.user_credential_add:
   path: 'hawk/credential/add'
@@ -13,6 +15,8 @@ hawk.user_credential_add:
   requirements:
     _permission: 'access own credentials'
     _user_is_logged_in: 'TRUE'
+  options:
+    _admin_route: TRUE
 
 hawk.user_credential_delete:
   path: 'hawk/credential/delete/{cid}'
@@ -21,3 +25,5 @@ hawk.user_credential_delete:
   requirements:
     _permission: 'access own credentials'
     _user_is_logged_in: 'TRUE'
+  options:
+    _admin_route: TRUE
