@@ -19,11 +19,15 @@ hawk.user_credential_add:
     _admin_route: TRUE
 
 hawk.user_credential_delete:
-  path: 'hawk/credential/delete/{cid}'
+  path: 'hawk/credential/{hawk_credential}/delete'
   defaults:
-    _form: 'Drupal\hawk\Form\HawkDeleteCredential'
+    _entity_form: 'hawk_credential.delete'
   requirements:
     _permission: 'access own credentials'
     _user_is_logged_in: 'TRUE'
   options:
     _admin_route: TRUE
+    parameters:
+      hawk_credential:
+        type: entity:hawk_credential
+

@@ -78,7 +78,7 @@ class Hawk extends ControllerBase {
             '#links' => [
               'delete' => [
                 'title' => t('Delete'),
-                'url' => Url::fromRoute('hawk.user_credential_delete', ['cid' => $credential->id()]),
+                'url' => Url::fromRoute('hawk.user_credential_delete', ['hawk_credential' => $credential->id()]),
               ],
             ],
           ],

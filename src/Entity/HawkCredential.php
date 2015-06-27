@@ -16,11 +16,14 @@ use Drupal\user\UserInterface;
  *   handlers = {
  *     "storage" = "Drupal\hawk\Entity\HawkCredentialStorage",
  *     "storage_schema" = "Drupal\hawk\Entity\HawkCredentialStorageSchema",
+ *     "form" = {
+ *        "delete" = "Drupal\hawk\Form\HawkDeleteCredential",
+ *     },
  *   },
  *   base_table = "hawk_credentials",
  *   entity_keys = {
  *     "id" = "cid"
- *   }
+ *   },
  * )
  */
 class HawkCredential extends ContentEntityBase implements HawkCredentialInterface {
