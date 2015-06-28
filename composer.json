@@ -19,7 +19,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Drupal\\Hawk\\": "src"
+      "Drupal\\hawk\\": "src"
     }
   },
   "repositories": [
