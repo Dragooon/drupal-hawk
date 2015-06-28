@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Hawk\Authentication\Provider;
+namespace Drupal\hawk\Authentication\Provider;
 
 use Dragooon\Hawk\Server\ServerInterface;
 use Dragooon\Hawk\Server\UnauthorizedException;

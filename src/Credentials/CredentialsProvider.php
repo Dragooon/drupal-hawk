@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Hawk\Credentials;
+namespace Drupal\hawk\Credentials;
 
 use Dragooon\Hawk\Credentials\Credentials;
 use Dragooon\Hawk\Credentials\CredentialsNotFoundException;

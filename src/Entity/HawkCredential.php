@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Hawk\Entity;
+namespace Drupal\hawk\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;

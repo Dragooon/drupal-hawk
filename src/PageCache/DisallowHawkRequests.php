@@ -2,11 +2,6 @@
 
 namespace Drupal\hawk\PageCache;
 
-// hawk.module isn't loaded at this point of execution
-if (file_exists(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php')) {
-  require_once(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php');
-}
-
 use Dragooon\Hawk\Server\ServerInterface;
 use Drupal\Core\PageCache\RequestPolicyInterface;
 use Symfony\Component\HttpFoundation\Request;

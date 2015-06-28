@@ -5,4 +5,3 @@ access own hawk credentials:
 administer hawk:
   title: 'Administer Hawk'
   restrict access: true
-  
