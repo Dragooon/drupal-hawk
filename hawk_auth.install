@@ -17,8 +17,14 @@ function hawk_requirements($phase) {
   if (!class_exists('\\Dragooon\\Hawk\\Client\\Client')) {
     $requirements['hawk'] += [
       'severity' => REQUIREMENT_ERROR,
-      'description' => t("Hawk module requires the <a href='!hawk_url' target='_blank'>PHP Hawk</a> library.",
-        ['!hawk_url' => 'http://github.com/Dragooon/php-hawk']),
+      'description' =>
+        t('Hawk module requires the <a href="!hawk_url" target="_blank">PHP Hawk</a> library. You can use something like ' .
+          '<a href="!composer_manager_url" target="_blank">composer_manager</a> module in order to install the dependencies.',
+          [
+            '!hawk_url' => 'http://github.com/Dragooon/php-hawk',
+            '!composer_manager_url' => 'https://www.drupal.org/project/composer_manager',
+          ]
+        ),
     ];
   }
 
