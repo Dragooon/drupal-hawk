@@ -3,7 +3,7 @@ services:
     class: Drupal\hawk_auth\Authentication\Provider\HawkAuth
     arguments: [ '@hawk_auth.server', '@entity.manager' ]
     tags:
-      - { name: authentication_provider, provider_id: hawk, priority: 100 }
+      - { name: authentication_provider, provider_id: hawk_auth, priority: 100 }
   hawk_auth.server:
     class: Dragooon\Hawk\Server\Server
     arguments: [ '@hawk_auth.crypto', '@hawk_auth.credentials_provider', '@hawk_auth.time_provider', '@hawk_auth.nonce_validator', 60, 0 ]
