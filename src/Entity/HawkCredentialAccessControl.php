@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hawk\Entity;
+namespace Drupal\hawk_auth\Entity;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityAccessControlHandler;
@@ -13,7 +13,7 @@ class HawkCredentialAccessControl extends EntityAccessControlHandler {
    * {@inheritDoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, $langcode, AccountInterface $account) {
-    /** @var \Drupal\hawk\Entity\HawkCredentialInterface $entity */
+    /** @var \Drupal\hawk_auth\Entity\HawkCredentialInterface $entity */
 
     if ($operation == 'delete') {
       $user = $entity->getOwner();

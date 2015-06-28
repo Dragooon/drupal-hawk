@@ -1,6 +1,6 @@
 services:
   authentication.hawk:
-    class: Drupal\hawk\Authentication\Provider\Hawk
+    class: Drupal\hawk_auth\Authentication\Provider\Hawk
     arguments: [ '@hawk.server', '@entity.manager' ]
     tags:
       - { name: authentication_provider, provider_id: hawk, priority: 100 }
@@ -14,7 +14,7 @@ services:
     tags:
       - { name: hawk_crypto }
   hawk.credentials_provider:
-    class: Drupal\hawk\Credentials\CredentialsProvider
+    class: Drupal\hawk_auth\Credentials\CredentialsProvider
     arguments: ['@entity.manager']
     tags:
       - { name: hawk_credentials_provider }
@@ -23,11 +23,11 @@ services:
     tags:
       - { name: hawk_time_provider }
   hawk.nonce_validator:
-    class: Drupal\hawk\Nonce\NonceValidator
+    class: Drupal\hawk_auth\Nonce\NonceValidator
     tags:
       - { name: hawk_nonce_validator }
   hawk.page_cache_request_policy.disallow_hawk_requests:
-    class: Drupal\hawk\PageCache\DisallowHawkRequests
+    class: Drupal\hawk_auth\PageCache\DisallowHawkRequests
     public: false
     arguments: [ '@hawk.server' ]
     tags:

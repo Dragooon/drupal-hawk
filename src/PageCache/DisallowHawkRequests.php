@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hawk\PageCache;
+namespace Drupal\hawk_auth\PageCache;
 
 use Dragooon\Hawk\Server\ServerInterface;
 use Drupal\Core\PageCache\RequestPolicyInterface;

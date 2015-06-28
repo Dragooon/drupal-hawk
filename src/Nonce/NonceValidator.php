@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hawk\Nonce;
+namespace Drupal\hawk_auth\Nonce;
 
 use Dragooon\Hawk\Nonce\NonceValidatorInterface;
 

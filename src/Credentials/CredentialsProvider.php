@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\hawk\Credentials;
+namespace Drupal\hawk_auth\Credentials;
 
 use Dragooon\Hawk\Credentials\Credentials;
 use Dragooon\Hawk\Credentials\CredentialsNotFoundException;
 use Dragooon\Hawk\Credentials\CredentialsProviderInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
-use Drupal\hawk\Entity\HawkCredentialInterface;
+use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 
 class CredentialsProvider implements CredentialsProviderInterface {
 

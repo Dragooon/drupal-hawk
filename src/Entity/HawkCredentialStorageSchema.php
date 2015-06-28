@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hawk\Entity;
+namespace Drupal\hawk_auth\Entity;
 
 use Drupal\Core\Entity\Sql\SqlContentEntityStorageSchema;
 

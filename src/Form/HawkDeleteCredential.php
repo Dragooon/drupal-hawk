@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hawk\Form;
+namespace Drupal\hawk_auth\Form;
 
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Form\FormStateInterface;
@@ -27,14 +27,14 @@ class HawkDeleteCredential extends ContentEntityDeleteForm {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return $this->url('hawk.user_credential', ['user' => $this->currentUser()->id()]);
+    return $this->url('hawk_auth.user_credential', ['user' => $this->currentUser()->id()]);
   }
 
   /**
    * {@inheritDoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    /** @var \Drupal\hawk\Entity\HawkCredentialInterface $credential */
+    /** @var \Drupal\hawk_auth\Entity\HawkCredentialInterface $credential */
     $credential = $this->getEntity();
 
     if (empty($credential) || $credential->getOwnerId() != $this->currentUser()->id()) {
@@ -43,7 +43,7 @@ class HawkDeleteCredential extends ContentEntityDeleteForm {
 
     $credential->delete();
 
-    $form_state->setRedirect('hawk.user_credential', ['user' => $this->currentUser()->id()]);
+    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $this->currentUser()->id()]);
   }
 
 }

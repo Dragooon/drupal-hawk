@@ -1,4 +1,4 @@
-name: Hawk Authentication
+name: Hawk Auth
 type: module
 description: "Provides Hawk server authentication"
 package: Web services

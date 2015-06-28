@@ -1,16 +1,16 @@
 <?php
 
-namespace Drupal\hawk\Form;
+namespace Drupal\hawk_auth\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\hawk\Entity\HawkCredentialStorageInterface;
+use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class HawkAddCredential extends FormBase {
 
   /**
-   * @var \Drupal\hawk\Entity\HawkCredentialStorageInterface
+   * @var \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface
    */
   protected $hawkCredentialStorage;
 
@@ -90,7 +90,7 @@ class HawkAddCredential extends FormBase {
     ]);
     $newCredential->save();
 
-    $form_state->setRedirect('hawk.user_credential', ['user' => $this->currentUser()->id()]);
+    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $this->currentUser()->id()]);
   }
 
 }

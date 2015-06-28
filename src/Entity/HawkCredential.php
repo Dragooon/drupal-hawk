@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hawk\Entity;
+namespace Drupal\hawk_auth\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -14,11 +14,11 @@ use Drupal\user\UserInterface;
  *   id = "hawk_credential",
  *   label = @Translation("Hawk Credential"),
  *   handlers = {
- *     "access" = "Drupal\hawk\Entity\HawkCredentialAccessControl",
- *     "storage" = "Drupal\hawk\Entity\HawkCredentialStorage",
- *     "storage_schema" = "Drupal\hawk\Entity\HawkCredentialStorageSchema",
+ *     "access" = "Drupal\hawk_auth\Entity\HawkCredentialAccessControl",
+ *     "storage" = "Drupal\hawk_auth\Entity\HawkCredentialStorage",
+ *     "storage_schema" = "Drupal\hawk_auth\Entity\HawkCredentialStorageSchema",
  *     "form" = {
- *        "delete" = "Drupal\hawk\Form\HawkDeleteCredential",
+ *        "delete" = "Drupal\hawk_auth\Form\HawkDeleteCredential",
  *     },
  *   },
  *   base_table = "hawk_credentials",
