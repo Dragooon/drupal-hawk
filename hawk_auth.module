@@ -11,7 +11,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
  */
 function hawk_help($route_name, $route_match) {
   switch ($route_name) {
-    case 'hawk.user_credential':
+    case 'hawk_auth.user_credential':
       $output = '<p>' . t('This page lists all the valid Hawk Credentials associated with your account. ' .
                           'When provuding ID for the client, use the ID listed against the key secret and not your ' .
                           'account ID.') . '</p>';

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hawk\Controller;
+namespace Drupal\hawk_auth\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
@@ -11,13 +11,13 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\user\UserInterface;
-use Drupal\hawk\Entity\HawkCredentialStorageInterface;
+use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\Routing\Route;
 
 class Hawk extends ControllerBase implements AccessInterface {
 
   /**
-   * @var \Drupal\hawk\Entity\HawkCredentialStorageInterface
+   * @var \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface
    */
   protected $hawkCredentialStorage;
 
@@ -49,7 +49,7 @@ class Hawk extends ControllerBase implements AccessInterface {
    * @return array
    */
   public function credential(UserInterface $user) {
-    /** @var \Drupal\hawk\Entity\HawkCredentialInterface[] $credentials */
+    /** @var \Drupal\hawk_auth\Entity\HawkCredentialInterface[] $credentials */
     $credentials = $this->hawkCredentialStorage->loadByProperties(array('uid' => $user->id()));
 
     $list = [];
@@ -84,7 +84,7 @@ class Hawk extends ControllerBase implements AccessInterface {
             '#links' => [
               'delete' => [
                 'title' => t('Delete'),
-                'url' => Url::fromRoute('hawk.user_credential_delete', ['hawk_credential' => $credential->id()]),
+                'url' => Url::fromRoute('hawk_auth.user_credential_delete', ['hawk_credential' => $credential->id()]),
               ],
             ],
           ],
@@ -107,7 +107,7 @@ class Hawk extends ControllerBase implements AccessInterface {
    * @return AccessResultInterface
    */
   public function access(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {
-    if ($route_match->getRouteName() == 'hawk.user_credential') {
+    if ($route_match->getRouteName() == 'hawk_auth.user_credential') {
       /** @var AccountInterface $user */
       $user = $route_match->getParameter('user');
 

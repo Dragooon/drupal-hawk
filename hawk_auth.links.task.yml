@@ -1,4 +1,4 @@
-hawk.user_credential:
+hawk_auth.user_credential:
   title: 'Hawk Credentials'
-  route_name: hawk.user_credential
+  route_name: hawk_auth.user_credential
   base_route: entity.user.canonical

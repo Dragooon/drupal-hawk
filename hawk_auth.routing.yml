@@ -1,4 +1,4 @@
-hawk.user_credential:
+hawk_auth.user_credential:
   path: 'user/{user}/hawk/credential'
   defaults:
     _controller: '\Drupal\hawk_auth\Controller\Hawk::credential'
@@ -7,7 +7,7 @@ hawk.user_credential:
   options:
     _admin_route: TRUE
 
-hawk.user_credential_add:
+hawk_auth.user_credential_add:
   path: 'hawk/credential/add'
   defaults:
     _form: 'Drupal\hawk_auth\Form\HawkAddCredential'
@@ -18,7 +18,7 @@ hawk.user_credential_add:
   options:
     _admin_route: TRUE
 
-hawk.user_credential_delete:
+hawk_auth.user_credential_delete:
   path: 'hawk/credential/{hawk_credential}/delete'
   defaults:
     _entity_form: 'hawk_credential.delete'
