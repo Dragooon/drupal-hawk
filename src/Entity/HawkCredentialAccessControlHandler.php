@@ -7,7 +7,7 @@ use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 
-class HawkCredentialAccessControl extends EntityAccessControlHandler {
+class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritDoc}

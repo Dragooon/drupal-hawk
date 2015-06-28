@@ -1,16 +1,16 @@
 hawk_auth.user_credential:
   path: 'user/{user}/hawk/credential'
   defaults:
-    _controller: '\Drupal\hawk_auth\Controller\Hawk::credential'
+    _controller: '\Drupal\hawk_auth\Controller\HawkAuthController::credential'
   requirements:
-    _custom_access: '\Drupal\hawk_auth\Controller\Hawk::access'
+    _custom_access: '\Drupal\hawk_auth\Controller\HawkAuthController::access'
   options:
     _admin_route: TRUE
 
 hawk_auth.user_credential_add:
   path: 'hawk/credential/add'
   defaults:
-    _form: 'Drupal\hawk_auth\Form\HawkAddCredential'
+    _form: 'Drupal\hawk_auth\Form\HawkAddCredentialForm'
     _title: 'Add a Hawk credential'
   requirements:
     _entity_create_access: 'hawk_credential'

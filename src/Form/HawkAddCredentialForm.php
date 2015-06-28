@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class HawkAddCredential extends FormBase {
+class HawkAddCredentialForm extends FormBase {
 
   /**
    * @var \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface
@@ -76,7 +76,7 @@ class HawkAddCredential extends FormBase {
       $form_state->setErrorByName('key_alog', $this->t('Selected algorithm is not valid'));
     }
 
-    return parent::validateForm($form, $form_state);
+    parent::validateForm($form, $form_state);
   }
 
   /**

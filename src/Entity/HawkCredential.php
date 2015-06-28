@@ -14,11 +14,11 @@ use Drupal\user\UserInterface;
  *   id = "hawk_credential",
  *   label = @Translation("Hawk Credential"),
  *   handlers = {
- *     "access" = "Drupal\hawk_auth\Entity\HawkCredentialAccessControl",
+ *     "access" = "Drupal\hawk_auth\Entity\HawkCredentialAccessControlHandler",
  *     "storage" = "Drupal\hawk_auth\Entity\HawkCredentialStorage",
  *     "storage_schema" = "Drupal\hawk_auth\Entity\HawkCredentialStorageSchema",
  *     "form" = {
- *        "delete" = "Drupal\hawk_auth\Form\HawkDeleteCredential",
+ *        "delete" = "Drupal\hawk_auth\Form\HawkDeleteCredentialForm",
  *     },
  *   },
  *   base_table = "hawk_credentials",

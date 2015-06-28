@@ -6,7 +6,7 @@ use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class HawkDeleteCredential extends ContentEntityDeleteForm {
+class HawkDeleteCredentialForm extends ContentEntityDeleteForm {
 
   /**
    * {@inheritdoc}

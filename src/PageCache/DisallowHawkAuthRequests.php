@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
  * required permissions. Otherwise it would cache the URL and serve the same page back
  * to other users.
  */
-class DisallowHawkRequests implements RequestPolicyInterface {
+class DisallowHawkAuthRequests implements RequestPolicyInterface {
 
   /**
    * @var \Dragooon\Hawk\Server\ServerInterface

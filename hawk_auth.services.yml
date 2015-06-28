@@ -1,6 +1,6 @@
 services:
   authentication.hawk:
-    class: Drupal\hawk_auth\Authentication\Provider\Hawk
+    class: Drupal\hawk_auth\Authentication\Provider\HawkAuth
     arguments: [ '@hawk_auth.server', '@entity.manager' ]
     tags:
       - { name: authentication_provider, provider_id: hawk, priority: 100 }
@@ -27,7 +27,7 @@ services:
     tags:
       - { name: hawk_nonce_validator }
   hawk_auth.page_cache_request_policy.disallow_hawk_requests:
-    class: Drupal\hawk_auth\PageCache\DisallowHawkRequests
+    class: Drupal\hawk_auth\PageCache\DisallowHawkAuthRequests
     public: false
     arguments: [ '@hawk_auth.server' ]
     tags:

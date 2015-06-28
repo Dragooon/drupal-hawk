@@ -14,7 +14,7 @@ use Drupal\user\UserInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\Routing\Route;
 
-class Hawk extends ControllerBase implements AccessInterface {
+class HawkAuthController extends ControllerBase implements AccessInterface {
 
   /**
    * @var \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface

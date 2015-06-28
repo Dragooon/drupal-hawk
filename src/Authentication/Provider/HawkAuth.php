@@ -8,7 +8,7 @@ use Drupal\Core\Authentication\AuthenticationProviderInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class Hawk implements AuthenticationProviderInterface {
+class HawkAuth implements AuthenticationProviderInterface {
 
   /**
    * Server interface for Hawk
