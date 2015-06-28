@@ -20,6 +20,8 @@ Usage example
 ------------
 Hawk can be used with Drupal's REST services module amongst other things, the example here is one of the applications.
 
+Also see examples/example.php for a demo
+
 - Enable REST module (optional: get REST UI module from drupal.org for easier management).
 - Enable one of the routes (/node/<nid> as an example) and enable hawk_auth as an authentication provider for the route
   and methods.
