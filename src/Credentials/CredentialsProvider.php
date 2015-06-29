@@ -30,6 +30,8 @@ class CredentialsProvider implements CredentialsProviderInterface {
   protected $entityManager;
 
   /**
+   * Constructs a CredentialsProvider object.
+   *
    * @param EntityManagerInterface $entity_manager
    *   Entity Manager.
    */

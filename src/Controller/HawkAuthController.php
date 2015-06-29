@@ -58,6 +58,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    *
    * @param UserInterface $user
    *   The user who's credentials is to be displayed.
+   *
    * @return array
    */
   public function credential(UserInterface $user) {
@@ -116,6 +117,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    *    The current route being accessed.
    * @param AccountInterface $account
    *    The account currently logged in.
+   *
    * @return AccessResultInterface
    */
   public function access(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {

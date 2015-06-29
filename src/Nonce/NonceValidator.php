@@ -19,7 +19,7 @@ class NonceValidator implements NonceValidatorInterface {
    */
   public function validateNonce($nonce, $timestamp) {
     // @todo: validate this properly
-    return true;
+    return TRUE;
   }
 
 }
