@@ -43,8 +43,7 @@ interface HawkCredentialInterface extends ContentEntityInterface {
   public function getOwner();
 
   /**
-   * Sets the ID of the owner from the object of the user this credential
-   * belongs to.
+   * Sets the ID of the owner from the object of the user.
    *
    * @param UserInterface $account
    *   The owner to set.

@@ -133,4 +133,5 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
       );
     }
   }
+
 }
