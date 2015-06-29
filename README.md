@@ -57,7 +57,7 @@ Also see examples/example.php for a demo
 
 License
 ------------
-Dual licensed under The MIT License (See LICENSE) and GPLv2.
+Dual licensed under The MIT License and GPLv2.
 
 [0]: https://raw.githubusercontent.com/hueniverse/hawk/master/README.md
 [1]: https://www.drupal.org/node/2405811
