@@ -17,7 +17,9 @@ interface HawkCredentialInterface extends ContentEntityInterface {
 
   /**
    * Returns the ID of the User this credential belongs to.
+   *
    * @return int
+   *   The ID of the owner.
    */
   public function getOwnerId();
 
@@ -28,12 +30,15 @@ interface HawkCredentialInterface extends ContentEntityInterface {
    *   The ID of the owner to set.
    *
    * @return $this
+   *   HawkCredentialInterface object for chaining.
    */
   public function setOwnerId($id);
 
   /**
    * Returns the object of the user this credential belongs to.
+   *
    * @return UserInterface
+   *   The owner's object.
    */
   public function getOwner();
 
@@ -45,12 +50,15 @@ interface HawkCredentialInterface extends ContentEntityInterface {
    *   The owner to set.
    *
    * @return $this
+   *   HawkCredentialInterface object for chaining.
    */
   public function setOwner(UserInterface $account);
 
   /**
    * Returns the key secret.
+   *
    * @return string
+   *   The key secret associated with this credential.
    */
   public function getKeySecret();
 
@@ -61,12 +69,15 @@ interface HawkCredentialInterface extends ContentEntityInterface {
    *   The key secret to set.
    *
    * @return $this
+   *   HawkCredentialInterface object for chaining.
    */
   public function setKeySecret($key_secret);
 
   /**
    * Returns the algorithm for hashing.
+   *
    * @return string
+   *   The key algo associated with this credential.
    */
   public function getKeyAlgo();
 
@@ -77,6 +88,7 @@ interface HawkCredentialInterface extends ContentEntityInterface {
    *   They key algo to set.
    *
    * @return $this
+   *   HawkCredentialInterface object for chaining.
    */
   public function setKeyAlgo($key_algo);
 

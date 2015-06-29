@@ -60,6 +60,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    *   The user who's credentials is to be displayed.
    *
    * @return array
+   *   Build structure for displaying a table of credentials.
    */
   public function credential(UserInterface $user) {
     /** @var \Drupal\hawk_auth\Entity\HawkCredentialInterface[] $credentials */
@@ -119,6 +120,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    *    The account currently logged in.
    *
    * @return AccessResultInterface
+   *   Access Result whether the user can see the credentials or not.
    */
   public function access(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {
     if ($route_match->getRouteName() == 'hawk_auth.user_credential') {
