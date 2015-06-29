@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\hawk_auth\Credentials\CredentialsProvider
+ * Contains \Drupal\hawk_auth\Credentials\CredentialsProvider.
  */
 
 namespace Drupal\hawk_auth\Credentials;
@@ -20,19 +20,22 @@ use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 class CredentialsProvider implements CredentialsProviderInterface {
 
   /**
+   * Entity manager.
+   *
    * @var EntityManagerInterface
    */
   protected $entityManager;
 
   /**
    * @param EntityManagerInterface $entity_manager
+   *   Entity Manager.
    */
   public function __construct(EntityManagerInterface $entity_manager) {
     $this->entityManager = $entity_manager;
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function loadCredentialsById($id) {
     /** @var HawkCredentialInterface $credential */

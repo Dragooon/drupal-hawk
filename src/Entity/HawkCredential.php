@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\hawk_auth\Entity\HawkCredential
+ * Contains \Drupal\hawk_auth\Entity\HawkCredential.
  */
 
 namespace Drupal\hawk_auth\Entity;
@@ -35,15 +35,14 @@ use Drupal\user\UserInterface;
 class HawkCredential extends ContentEntityBase implements HawkCredentialInterface {
 
   /**
-   * @return int
+   * {@inheritdoc}
    */
   public function getOwnerId() {
     return $this->get('uid')->target_id;
   }
 
   /**
-   * @param int
-   * @return $this
+   * {@inheritdoc}
    */
   public function setOwnerId($id) {
     $this->set('uid', $id);
@@ -51,15 +50,14 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
   }
 
   /**
-   * @return UserInterface
+   * {@inheritdoc}
    */
   public function getOwner() {
     return $this->get('uid')->entity;
   }
 
   /**
-   * @param UserInterface $account
-   * @return $this
+   * {@inheritdoc}
    */
   public function setOwner(UserInterface $account) {
     $this->set('uid', $account->id());
@@ -67,15 +65,14 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
   }
 
   /**
-   * @return string
+   * {@inheritdoc}
    */
   public function getKeySecret() {
     return $this->get('key_secret')->value;
   }
 
   /**
-   * @param string
-   * @return $this
+   * {@inheritdoc}
    */
   public function setKeySecret($keySecret) {
     $this->set('key_secret', $keySecret);
@@ -83,15 +80,14 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
   }
 
   /**
-   * @return string
+   * {@inheritdoc}
    */
   public function getKeyAlgo() {
     return $this->get('key_algo')->value;
   }
 
   /**
-   * @param string
-   * @return $this
+   * {@inheritdoc}
    */
   public function setKeyAlgo($keyAlgo) {
     $this->set('key_algo', $keyAlgo);
@@ -99,7 +95,7 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = [];

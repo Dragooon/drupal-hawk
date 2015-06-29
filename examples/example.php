@@ -1,16 +1,15 @@
 <?php
 /**
  * @file
- * Contains an example of a client script making a request to a Drupal server
- * containing Hawk auth module.
+ * Contains an example of a client script.
  */
 
-// This is the composer autoload file loading the PHP-Hawk library used throughout the file
-// Fix the path according to your setup
+// This is the composer autoload file loading the PHP-Hawk library used
+// throughout the file. Fix the path according to your setup
 require_once 'vendor/autoload.php';
 
-// Note: Drupal 8 recently changed REST format to follow _format=json at the end of URL
-// instead of Accept: application/json in the headers.
+// Note: Drupal 8 recently changed REST format to follow _format=json at the
+// end of URL instead of Accept: application/json in the headers.
 $request_url = 'http://example.com/drupal/node/1?_format=json';
 $method = 'GET';
 
@@ -20,7 +19,7 @@ $credentials = new \Dragooon\Hawk\Credentials\Credentials(
   'LAMqXvfADLJMsba5UZwx4VrWmsoLRvYX',
   // Key Algorithm.
   'sha256',
-  // Key ID, this is separate from User ID and is listed alongside Key Secret in profile.
+  // Key ID, this is separate from User ID and is listed alongside Key Secret
   1
 );
 

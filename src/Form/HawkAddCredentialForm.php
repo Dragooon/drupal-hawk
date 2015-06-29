@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\hawk_auth\Form\HawkAddCredentialForm
+ * Contains \Drupal\hawk_auth\Form\HawkAddCredentialForm.
  */
 
 namespace Drupal\hawk_auth\Form;
@@ -13,19 +13,22 @@ use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form for adding a hawk credential
+ * Form for adding a hawk credential.
  */
 class HawkAddCredentialForm extends FormBase {
 
   /**
+   * Hawk credential entity's storage.
+   *
    * @var \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface
    */
   protected $hawkCredentialStorage;
 
   /**
-   * Constructs Hawk controller object
+   * Constructs Hawk controller object.
    *
    * @param HawkCredentialStorageInterface $hawk_credential_storage
+   *   Storage for Hawk Credentials' entities.
    */
   public function __construct(HawkCredentialStorageInterface $hawk_credential_storage) {
     $this->hawkCredentialStorage = $hawk_credential_storage;
@@ -36,23 +39,23 @@ class HawkAddCredentialForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     /** @var \Drupal\Core\Entity\EntityManagerInterface $entity_manager */
-    $entityManager = $container->get('entity.manager');
+    $entity_manager = $container->get('entity.manager');
 
     return new static(
-      $entityManager->getStorage('hawk_credential')
+      $entity_manager->getStorage('hawk_credential')
     );
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getFormID() {
+  public function getFormId() {
     return 'hawk_add_credential_form';
   }
 
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $algos = array();
@@ -88,7 +91,7 @@ class HawkAddCredentialForm extends FormBase {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $newCredential = $this->hawkCredentialStorage->create([

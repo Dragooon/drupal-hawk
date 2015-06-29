@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains Drupal\hawk_auth\Form\HawkDeleteCredentialForm
+ * Contains Drupal\hawk_auth\Form\HawkDeleteCredentialForm.
  */
 
 namespace Drupal\hawk_auth\Form;
@@ -12,14 +12,14 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Form for deleting a hawk credential
+ * Form for deleting a hawk credential.
  */
 class HawkDeleteCredentialForm extends ContentEntityDeleteForm {
 
   /**
    * {@inheritdoc}
    */
-  public function getFormID() {
+  public function getFormId() {
     return 'hawk_delete_credential_form';
   }
 
@@ -39,14 +39,14 @@ class HawkDeleteCredentialForm extends ContentEntityDeleteForm {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     /** @var \Drupal\hawk_auth\Entity\HawkCredentialInterface $credential */
     $credential = $this->getEntity();
 
     if (empty($credential) || $credential->getOwnerId() != $this->currentUser()->id()) {
-      throw new AccessDeniedHttpException('Invalid credential owner', null, 403);
+      throw new AccessDeniedHttpException('Invalid credential owner', NULL, 403);
     }
 
     $credential->delete();

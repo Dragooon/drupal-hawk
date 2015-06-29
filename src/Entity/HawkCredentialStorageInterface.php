@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface
+ * Contains \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface.
  */
 
 namespace Drupal\hawk_auth\Entity;

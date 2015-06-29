@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\hawk_auth\Authentication\Provider\HawkAuth
+ * Contains \Drupal\hawk_auth\Authentication\Provider\HawkAuth.
  */
 
 namespace Drupal\hawk_auth\Authentication\Provider;
@@ -19,20 +19,26 @@ use Symfony\Component\HttpFoundation\Request;
 class HawkAuth implements AuthenticationProviderInterface {
 
   /**
-   * Server interface for Hawk
+   * Server interface for Hawk.
    *
    * @var ServerInterface
    */
   protected $server;
 
   /**
+   * Entity manager.
+   *
    * @var EntityManagerInterface
    */
   protected $entityManager;
 
   /**
+   * Constructs a HawkAuth object.
+   *
    * @param ServerInterface $server
+   *   Server interface for hawk
    * @param EntityManagerInterface $entity_manager
+   *   Entity Mnaager
    */
   public function __construct(ServerInterface $server, EntityManagerInterface $entity_manager) {
     $this->server = $server;
@@ -40,14 +46,14 @@ class HawkAuth implements AuthenticationProviderInterface {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function applies(Request $request) {
     return $this->server->checkRequestForHawk($request->headers->get('authorization'));
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function authenticate(Request $request) {
     try {

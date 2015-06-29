@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\hawk_auth\Controller\HawkAuthController
+ * Contains \Drupal\hawk_auth\Controller\HawkAuthController.
  */
 
 namespace Drupal\hawk_auth\Controller;
@@ -26,17 +26,17 @@ use Symfony\Component\Routing\Route;
 class HawkAuthController extends ControllerBase implements AccessInterface {
 
   /**
-   * Hawk Credentials' storage
+   * Hawk Credentials' storage.
    *
    * @var \Drupal\hawk_auth\Entity\HawkCredentialStorageInterface
    */
   protected $hawkCredentialStorage;
 
   /**
-   * Constructs Hawk controller object
+   * Constructs Hawk controller object.
    *
    * @param HawkCredentialStorageInterface $hawk_credential_storage
-   *    Storage model for managing Hawk Credentials' entities
+   *   Storage model for managing Hawk Credentials' entities
    */
   public function __construct(HawkCredentialStorageInterface $hawk_credential_storage) {
     $this->hawkCredentialStorage = $hawk_credential_storage;
@@ -58,6 +58,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    * Displays an user's credentials which they can manipulate
    *
    * @param UserInterface $user
+   *   The user who's credentials is to be displayed.
    * @return array
    */
   public function credential(UserInterface $user) {

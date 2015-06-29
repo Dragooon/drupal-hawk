@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\hawk_auth\Entity\HawkCredentialAccessControlHandler
+ * Contains \Drupal\hawk_auth\Entity\HawkCredentialAccessControlHandler.
  */
 
 namespace Drupal\hawk_auth\Entity;
@@ -13,13 +13,13 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 
 /**
- * Hawk Credential Access Control Handler, checks for delete and create permission
- * for individual credentials.
+ * Hawk Credential Access Control Handler, checks for delete and create
+ * permission for individual credentials.
  */
 class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, $langcode, AccountInterface $account) {
     /** @var \Drupal\hawk_auth\Entity\HawkCredentialInterface $entity */
@@ -38,7 +38,7 @@ class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
     return AccessResult::allowedIfHasPermissions($account, array('administer hawk', 'access own hawk credentials'), 'OR');
