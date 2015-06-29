@@ -59,8 +59,6 @@ License
 ------------
 Dual licensed under The MIT License (See LICENSE) and GPLv2.
 
-References
-------------
 [0]: https://raw.githubusercontent.com/hueniverse/hawk/master/README.md
 [1]: https://www.drupal.org/node/2405811
 [2]: https://github.com/Dragooon/php-hawk/blob/master/docs/Getting%20Started.md
