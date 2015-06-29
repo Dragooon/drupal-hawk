@@ -1,15 +1,16 @@
 <?php
 
+/**
+ * @file
+ * Allows users to authenticate themselves via Hawk authentication
+ */
+
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_help().
- *
- * @param string $route_name
- * @param RouteMatchInterface $route_match
- * @return string
  */
-function hawk_auth_help($route_name, $route_match) {
+function hawk_auth_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.hawk_auth':
       $output = '<p>' . t('Hawk Authentication provides an alternative to Basic Authentication and Cookie ' .

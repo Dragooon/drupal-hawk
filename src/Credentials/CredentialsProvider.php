@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\hawk_auth\Credentials\CredentialsProvider
+ */
+
 namespace Drupal\hawk_auth\Credentials;
 
 use Dragooon\Hawk\Credentials\Credentials;
@@ -8,6 +13,10 @@ use Dragooon\Hawk\Credentials\CredentialsProviderInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 
+/**
+ * Credentials callback for Hawk server, loads them from database when
+ * authenticating.
+ */
 class CredentialsProvider implements CredentialsProviderInterface {
 
   /**
@@ -16,10 +25,10 @@ class CredentialsProvider implements CredentialsProviderInterface {
   protected $entityManager;
 
   /**
-   * @param EntityManagerInterface $entityManager
+   * @param EntityManagerInterface $entity_manager
    */
-  public function __construct(EntityManagerInterface $entityManager) {
-    $this->entityManager = $entityManager;
+  public function __construct(EntityManagerInterface $entity_manager) {
+    $this->entityManager = $entity_manager;
   }
 
   /**

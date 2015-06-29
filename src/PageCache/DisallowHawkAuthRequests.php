@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ * Contains Drupal\hawk_auth\PageCache\DisallowHawkRequests
+ */
 namespace Drupal\hawk_auth\PageCache;
 
 use Dragooon\Hawk\Server\ServerInterface;
@@ -18,12 +22,15 @@ use Symfony\Component\HttpFoundation\Request;
 class DisallowHawkAuthRequests implements RequestPolicyInterface {
 
   /**
+   * Hawk server library
+   *
    * @var \Dragooon\Hawk\Server\ServerInterface
    */
   protected $server;
 
   /**
    * @param \Dragooon\Hawk\Server\ServerInterface $server
+   *    Library for hawk's server functions
    */
   public function __construct(ServerInterface $server) {
     $this->server = $server;

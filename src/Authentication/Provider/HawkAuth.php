@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\hawk_auth\Authentication\Provider\HawkAuth
+ */
+
 namespace Drupal\hawk_auth\Authentication\Provider;
 
 use Dragooon\Hawk\Server\ServerInterface;
@@ -8,6 +13,9 @@ use Drupal\Core\Authentication\AuthenticationProviderInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Hawk Authentication provider
+ */
 class HawkAuth implements AuthenticationProviderInterface {
 
   /**
@@ -24,11 +32,11 @@ class HawkAuth implements AuthenticationProviderInterface {
 
   /**
    * @param ServerInterface $server
-   * @param EntityManagerInterface $entityManager
+   * @param EntityManagerInterface $entity_manager
    */
-  public function __construct(ServerInterface $server, EntityManagerInterface $entityManager) {
+  public function __construct(ServerInterface $server, EntityManagerInterface $entity_manager) {
     $this->server = $server;
-    $this->entityManager = $entityManager;
+    $this->entityManager = $entity_manager;
   }
 
   /**

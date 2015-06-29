@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\hawk_auth\Entity\HawkCredentialAccessControlHandler
+ */
+
 namespace Drupal\hawk_auth\Entity;
 
 use Drupal\Core\Access\AccessResult;
@@ -7,6 +12,10 @@ use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 
+/**
+ * Hawk Credential Access Control Handler, checks for delete and create permission
+ * for individual credentials.
+ */
 class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
 
   /**

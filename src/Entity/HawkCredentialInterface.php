@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\hawk_auth\Entity\HawkCredentialInterface
+ */
+
 namespace Drupal\hawk_auth\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\user\UserInterface;
 
+/**
+ * Interface defines individual hawk credential's model.
+ */
 interface HawkCredentialInterface extends ContentEntityInterface {
 
   /**

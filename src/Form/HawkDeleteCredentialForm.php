@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * @file
+ * Contains Drupal\hawk_auth\Form\HawkDeleteCredentialForm
+ */
+
 namespace Drupal\hawk_auth\Form;
 
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+/**
+ * Form for deleting a hawk credential
+ */
 class HawkDeleteCredentialForm extends ContentEntityDeleteForm {
 
   /**

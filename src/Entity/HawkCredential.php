@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\hawk_auth\Entity\HawkCredential
+ */
+
 namespace Drupal\hawk_auth\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;

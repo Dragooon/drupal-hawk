@@ -1,25 +1,26 @@
 <?php
 
 /**
- * Implements hook_requirements().
- *
- * @param string $phase
- * @return array
+ * @file
+ * Install, update, and uninstall functions for the Hawk Auth module.
  */
-function hawk_requirements($phase) {
+
+/**
+ * Implements hook_requirements().
+ */
+function hawk_auth_requirements($phase) {
   $requirements = array();
 
   $requirements['hawk'] = [
     'title' => t('PHP Hawk'),
-    'value' => class_exists('\\Dragooon\\Hawk\\Hawk') ? t('PHP Hawk library found') : t('PHP Hawk library not found'),
+    'value' => t(class_exists('\\Dragooon\\Hawk\\Hawk') ? 'PHP Hawk library found' : 'PHP Hawk library not found'),
   ];
 
   if (!class_exists('\\Dragooon\\Hawk\\Client\\Client')) {
     $requirements['hawk'] += [
       'severity' => REQUIREMENT_ERROR,
       'description' =>
-        t('Hawk module requires the <a href="!hawk_url" target="_blank">PHP Hawk</a> library. You can use something like ' .
-          '<a href="!composer_manager_url" target="_blank">composer_manager</a> module in order to install the dependencies.',
+        t('Hawk module requires the <a href="!hawk_url" target="_blank">PHP Hawk</a> library. You can use something like <a href="!composer_manager_url" target="_blank">composer_manager</a> module in order to install the dependencies.',
           [
             '!hawk_url' => 'http://github.com/Dragooon/php-hawk',
             '!composer_manager_url' => 'https://www.drupal.org/project/composer_manager',
@@ -33,10 +34,8 @@ function hawk_requirements($phase) {
 
 /**
  * Implements hook_schema().
- *
- * @return array
  */
-function hawk_schema() {
+function hawk_auth_schema() {
   $schema = [];
 
   $schema['hawk_credentials'] = [

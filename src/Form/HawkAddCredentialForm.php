@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\hawk_auth\Form\HawkAddCredentialForm
+ */
+
 namespace Drupal\hawk_auth\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -7,6 +12,9 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Form for adding a hawk credential
+ */
 class HawkAddCredentialForm extends FormBase {
 
   /**
@@ -17,10 +25,10 @@ class HawkAddCredentialForm extends FormBase {
   /**
    * Constructs Hawk controller object
    *
-   * @param HawkCredentialStorageInterface $hawkCredentialStorage
+   * @param HawkCredentialStorageInterface $hawk_credential_storage
    */
-  public function __construct(HawkCredentialStorageInterface $hawkCredentialStorage) {
-    $this->hawkCredentialStorage = $hawkCredentialStorage;
+  public function __construct(HawkCredentialStorageInterface $hawk_credential_storage) {
+    $this->hawkCredentialStorage = $hawk_credential_storage;
   }
 
   /**
