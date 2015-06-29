@@ -13,8 +13,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 
 /**
- * Hawk Credential Access Control Handler, checks for delete and create
- * permission for individual credentials.
+ * Checks for delete and create permission for individual credentials.
  */
 class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
 

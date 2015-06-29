@@ -29,6 +29,8 @@ class DisallowHawkAuthRequests implements RequestPolicyInterface {
   protected $server;
 
   /**
+   * Constructs a DisallowHawkAuthRequests object
+   *
    * @param \Dragooon\Hawk\Server\ServerInterface $server
    *   Library for hawk's server functions.
    */

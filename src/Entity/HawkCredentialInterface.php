@@ -25,7 +25,8 @@ interface HawkCredentialInterface extends ContentEntityInterface {
   /**
    * Sets the ID of the User this credential belongs to.
    *
-   * @param int
+   * @param int $id
+   *   The ID of the owner to set
    * @return $this
    */
   public function setOwnerId($id);
@@ -42,6 +43,7 @@ interface HawkCredentialInterface extends ContentEntityInterface {
    * belongs to.
    *
    * @param UserInterface $account
+   *   The owner to set
    * @return $this
    */
   public function setOwner(UserInterface $account);
@@ -56,10 +58,11 @@ interface HawkCredentialInterface extends ContentEntityInterface {
   /**
    * Sets the key secret.
    *
-   * @param string
+   * @param string $key_secret
+   *   The key secret to set
    * @return $this
    */
-  public function setKeySecret($keySecret);
+  public function setKeySecret($key_secret);
 
   /**
    * Returns the algorithm for hashing.
@@ -71,9 +74,10 @@ interface HawkCredentialInterface extends ContentEntityInterface {
   /**
    * Sets the algorithm for hashing.
    *
-   * @param string
+   * @param string $key_algo
+   *   They key algo to set
    * @return $this
    */
-  public function setKeyAlgo($keyAlgo);
+  public function setKeyAlgo($key_algo);
 
 }

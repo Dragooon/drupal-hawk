@@ -14,7 +14,7 @@ use Drupal\Core\Entity\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Hawk Authentication provider
+ * Hawk Authentication provider.
  */
 class HawkAuth implements AuthenticationProviderInterface {
 
@@ -36,9 +36,9 @@ class HawkAuth implements AuthenticationProviderInterface {
    * Constructs a HawkAuth object.
    *
    * @param ServerInterface $server
-   *   Server interface for hawk
+   *   Server interface for hawk.
    * @param EntityManagerInterface $entity_manager
-   *   Entity Mnaager
+   *   Entity Manager.
    */
   public function __construct(ServerInterface $server, EntityManagerInterface $entity_manager) {
     $this->server = $server;
@@ -70,7 +70,7 @@ class HawkAuth implements AuthenticationProviderInterface {
       return $credentials->getOwner();
     }
     catch (UnauthorizedException $e) {
-      return null;
+      return NULL;
     }
   }
 

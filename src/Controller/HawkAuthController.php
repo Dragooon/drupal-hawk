@@ -20,8 +20,7 @@ use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
 use Symfony\Component\Routing\Route;
 
 /**
- * Contains the Hawk Controller for letting users view and edit their hawk
- * credentials.
+ * Contains the Controller for letting users view their hawk credentials.
  */
 class HawkAuthController extends ControllerBase implements AccessInterface {
 
@@ -36,7 +35,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    * Constructs Hawk controller object.
    *
    * @param HawkCredentialStorageInterface $hawk_credential_storage
-   *   Storage model for managing Hawk Credentials' entities
+   *   Storage model for managing Hawk Credentials' entities.
    */
   public function __construct(HawkCredentialStorageInterface $hawk_credential_storage) {
     $this->hawkCredentialStorage = $hawk_credential_storage;
@@ -47,15 +46,15 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    */
   public static function create(ContainerInterface $container) {
     /** @var \Drupal\Core\Entity\EntityManagerInterface $entity_manager */
-    $entityManager = $container->get('entity.manager');
+    $entity_manager = $container->get('entity.manager');
 
     return new static(
-      $entityManager->getStorage('hawk_credential')
+      $entity_manager->getStorage('hawk_credential')
     );
   }
 
   /**
-   * Displays an user's credentials which they can manipulate
+   * Displays an user's credentials which they can manipulate.
    *
    * @param UserInterface $user
    *   The user who's credentials is to be displayed.
@@ -109,14 +108,14 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
   }
 
   /**
-   * Checks for access for viewing a user's hawk credentials
+   * Checks for access for viewing a user's hawk credentials.
    *
    * @param Route $route
-   *    The route to check against
+   *    The route to check against.
    * @param RouteMatchInterface $route_match
-   *    The current route being accessed
+   *    The current route being accessed.
    * @param AccountInterface $account
-   *    The account currently logged in
+   *    The account currently logged in.
    * @return AccessResultInterface
    */
   public function access(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {

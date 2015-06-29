@@ -74,8 +74,8 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
   /**
    * {@inheritdoc}
    */
-  public function setKeySecret($keySecret) {
-    $this->set('key_secret', $keySecret);
+  public function setKeySecret($key_secret) {
+    $this->set('key_secret', $key_secret);
     return $this;
   }
 
@@ -89,8 +89,8 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
   /**
    * {@inheritdoc}
    */
-  public function setKeyAlgo($keyAlgo) {
-    $this->set('key_algo', $keyAlgo);
+  public function setKeyAlgo($key_algo) {
+    $this->set('key_algo', $key_algo);
     return $this;
   }
 
@@ -103,8 +103,8 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
     $fields['cid'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Credential ID'))
       ->setDescription(t('The credential ID'))
-      ->setReadOnly(true)
-      ->setSetting('unsigned', true);
+      ->setReadOnly(TRUE)
+      ->setSetting('unsigned', TRUE);
 
     $fields['uid'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('User ID'))

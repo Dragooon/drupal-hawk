@@ -94,12 +94,12 @@ class HawkAddCredentialForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $newCredential = $this->hawkCredentialStorage->create([
+    $new_credential = $this->hawkCredentialStorage->create([
       'key_secret' => user_password(32),
       'key_algo' => $form_state->getValue('key_algo'),
       'uid' => $this->currentUser()->id(),
     ]);
-    $newCredential->save();
+    $new_credential->save();
 
     $form_state->setRedirect('hawk_auth.user_credential', ['user' => $this->currentUser()->id()]);
   }

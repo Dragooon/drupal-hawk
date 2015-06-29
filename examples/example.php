@@ -5,7 +5,7 @@
  */
 
 // This is the composer autoload file loading the PHP-Hawk library used
-// throughout the file. Fix the path according to your setup
+// throughout the file. Fix the path according to your setup.
 require_once 'vendor/autoload.php';
 
 // Note: Drupal 8 recently changed REST format to follow _format=json at the
@@ -19,7 +19,7 @@ $credentials = new \Dragooon\Hawk\Credentials\Credentials(
   'LAMqXvfADLJMsba5UZwx4VrWmsoLRvYX',
   // Key Algorithm.
   'sha256',
-  // Key ID, this is separate from User ID and is listed alongside Key Secret
+  // Key ID, this is separate from User ID and is listed alongside Key Secret.
   1
 );
 

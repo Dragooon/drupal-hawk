@@ -14,8 +14,11 @@ use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 
 /**
- * Credentials callback for Hawk server, loads them from database when
- * authenticating.
+ * Credentials callback for Hawk server while authenticating.
+ *
+ * This is called by Dragooon\Hawk\Server\Server::authenticate to load
+ * a user by ID when a Hawk authentication request is made, it loads with
+ * respect to Hawk credential's ID and not the User's ID.
  */
 class CredentialsProvider implements CredentialsProviderInterface {
 

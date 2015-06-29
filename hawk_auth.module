@@ -19,6 +19,7 @@ function hawk_auth_help($route_name, RouteMatchInterface $route_match) {
                            profile. See <a href="http://github.com/hueniverse/hawk">Hawk</a> for more information
                            about the protocol') . '</p>';
       return $output;
+
     case 'hawk_auth.user_credential':
       $output = '<p>' . t('This page lists all the valid Hawk Credentials associated with your account.
                            When provuding ID for the client, use the ID listed against the key secret and not your

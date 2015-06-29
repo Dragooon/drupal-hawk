@@ -18,7 +18,7 @@ class NonceValidator implements NonceValidatorInterface {
    * {@inheritdoc}
    */
   public function validateNonce($nonce, $timestamp) {
-    //@todo: validate this properly
+    // @todo: validate this properly
     return true;
   }
 

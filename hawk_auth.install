@@ -10,7 +10,7 @@
  */
 function hawk_auth_requirements($phase) {
   $requirements = array();
-
+  
   $requirements['hawk'] = [
     'title' => t('PHP Hawk'),
     'value' => t(class_exists('\\Dragooon\\Hawk\\Hawk') ? 'PHP Hawk library found' : 'PHP Hawk library not found'),
