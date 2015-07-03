@@ -43,4 +43,4 @@ services:
       - { name: cache.bin }
     factory: cache_factory:get
     arguments: [hawk]
-    
+
