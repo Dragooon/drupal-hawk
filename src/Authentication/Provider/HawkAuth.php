@@ -11,6 +11,7 @@ use Dragooon\Hawk\Server\ServerInterface;
 use Dragooon\Hawk\Server\UnauthorizedException;
 use Drupal\Core\Authentication\AuthenticationProviderInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -66,6 +67,7 @@ class HawkAuth implements AuthenticationProviderInterface {
         $request->getContent(),
         $request->headers->get('authorization')
       );
+      /** @var HawkCredentialInterface $credentials */
       $credentials = $this->entityManager->getStorage('hawk_credential')->load($response->credentials()->id());
       return $credentials->getOwner();
     }

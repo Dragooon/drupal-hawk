@@ -55,10 +55,6 @@ Also see examples/example.php for a demo
 * Perform GET and POST requests at /node/<nid> using Credentials generated from
   the profile area.
 
-License
-------------
-Dual licensed under The MIT License and GPLv2.
-
 [0]: https://raw.githubusercontent.com/hueniverse/hawk/master/README.md
 [1]: https://www.drupal.org/node/2405811
 [2]: https://github.com/Dragooon/php-hawk/blob/master/docs/Getting%20Started.md
