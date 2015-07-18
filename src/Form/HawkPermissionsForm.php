@@ -87,12 +87,18 @@ class HawkPermissionsForm extends ContentEntityForm {
     $credential = $this->getEntity();
 
     // Render role/permission overview:
-    $options = array();
+    $options = [];
     $hide_descriptions = system_admin_compact_mode();
 
     $form['#title'] = $this->t('Editing revoke permissions for Hawk Credential ID #%id', [
       '%id' => $credential->id(),
     ]);
+
+    // User's with ID 1 cannot revoke permissions due to the way Drupal
+    // handles permission checks.
+    if ($this->currentUser()->id() == 1) {
+      return $form;
+    }
 
     $form['permissions'] = array(
       '#type' => 'table',

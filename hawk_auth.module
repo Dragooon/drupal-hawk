@@ -26,5 +26,22 @@ function hawk_auth_help($route_name, RouteMatchInterface $route_match) {
                            account ID.') . '</p>';
       return $output;
 
+    case 'hawk_auth.user_credential_permissions':
+      if (Drupal::currentUser()->id() == 1) {
+        $output = '
+          <div role="contentinfo" aria-label="' . t('Error message') . '" class="messages messages--error">
+              <div role="alert">
+                      <h2 class="visually-hidden">' . t('Error message') . '</h2>
+                        ' . t('Users with ID #1 cannot revoke permissions due to the way Drupal internally handles permissions') . '
+                    </div>
+          </div>';
+      }
+      else {
+        $output = '<p>' . t('All the selected permissions on this page are revoked for the current hawk
+                             credential. When a client is connecting using this hawk credential, they
+                             will not be allowed to perform any action that requires a permission
+                             you revoke from here.') . '</p>';
+      }
+      return $output;
   }
 }
