@@ -5,7 +5,7 @@ parameters:
 services:
   authentication.hawk:
     class: Drupal\hawk_auth\Authentication\Provider\HawkAuth
-    arguments: [ '@hawk_auth.server', '@entity.manager' ]
+    arguments: [ '@hawk_auth.server', '@entity.manager', '@user.permissions' ]
     tags:
       - { name: authentication_provider, provider_id: hawk_auth, priority: 100 }
   hawk_auth.server:
