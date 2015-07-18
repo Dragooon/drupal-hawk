@@ -1,5 +1,8 @@
 access own hawk credentials:
   title: 'Access own Hawk Credentials'
+
+add own hawk credentials:
+  title: 'Add own Hawk Credentials'
   restrict access: true
 
 administer hawk:

@@ -78,14 +78,7 @@ class HawkPermissionsForm extends ContentEntityForm {
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function getTitle() {
-
-  }
-
-  /**
-   * Copied a fair amount from Drupal\user\Form\UserPermissionForm.
+   * Copied a fair amount from Drupal\user\Form\UserPermissionForm::buildForm.
    *
    * {@inheritdoc}
    */

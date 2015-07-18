@@ -38,7 +38,7 @@ class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
-    return AccessResult::allowedIfHasPermissions($account, array('administer hawk', 'access own hawk credentials'), 'OR');
+    return AccessResult::allowedIfHasPermissions($account, array('administer hawk', 'add own hawk credentials'), 'OR');
   }
 
 }
