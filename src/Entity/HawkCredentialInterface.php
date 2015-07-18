@@ -91,4 +91,34 @@ interface HawkCredentialInterface extends ContentEntityInterface {
    */
   public function setKeyAlgo($key_algo);
 
+  /**
+   * Returns the permissions this credential is revoking.
+   *
+   * @return array
+   *   The list of permissions being revoked.
+   */
+  public function getRevokePermissions();
+
+  /**
+   * Sets the permissions this credential will revoke.
+   *
+   * @param array $permissions
+   *   The permissions to revoke.
+   *
+   * @return $this
+   *   HawkCredentialInterface object for chaining.
+   */
+  public function setRevokePermissions(array $permissions);
+
+  /**
+   * Whether this credential revokes a certain permission or not.
+   *
+   * @param string $permission
+   *   The permission to check.
+   *
+   * @return bool
+   *   Whether this credential revokes this permission or not.
+   */
+  public function revokesPermission($permission);
+  
 }

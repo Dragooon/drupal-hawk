@@ -62,6 +62,11 @@ function hawk_auth_schema() {
         'length' => 40,
         'not null' => TRUE,
       ],
+      'revoke_permissions' => [
+        'description' => 'Permissions this credential revokes from the user',
+        'type' => 'blob',
+        'not null' => FALSE,
+      ],
     ],
     'primary key' => ['cid'],
     'indexes' => [

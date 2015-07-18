@@ -97,6 +97,28 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
   /**
    * {@inheritdoc}
    */
+  public function getRevokePermissions() {
+    return unserialize($this->get('revoke_permissions')->value);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setRevokePermissions(array $permissions) {
+    $this->set('revoke_permissions', serialize($permissions));
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function revokesPermission($permission) {
+    return in_array($permission, $this->getRevokePermissions());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = [];
 
@@ -118,6 +140,10 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
     $fields['key_algo'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Key Algorithm'))
       ->setDescription(t('Encryption algorithm used by requests for this key'));
+
+    $fields['revoke_permissions'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Revoke permissions'))
+      ->setDescription(t('Permissions this key revokes from the user'));
 
     return $fields;
   }

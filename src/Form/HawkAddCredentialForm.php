@@ -53,7 +53,6 @@ class HawkAddCredentialForm extends FormBase {
     return 'hawk_add_credential_form';
   }
 
-
   /**
    * {@inheritdoc}
    */
