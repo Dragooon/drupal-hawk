@@ -120,5 +120,5 @@ interface HawkCredentialInterface extends ContentEntityInterface {
    *   Whether this credential revokes this permission or not.
    */
   public function revokesPermission($permission);
-  
+
 }

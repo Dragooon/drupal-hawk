@@ -96,6 +96,10 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
           'data' => [
             '#type' => 'operations',
             '#links' => [
+              'permissions' => [
+                'title' => t('Revoke Permissions'),
+                'url' => Url::fromRoute('hawk_auth.user_credential_permissions', ['hawk_credential' => $credential->id()]),
+              ],
               'delete' => [
                 'title' => t('Delete'),
                 'url' => Url::fromRoute('hawk_auth.user_credential_delete', ['hawk_credential' => $credential->id()]),

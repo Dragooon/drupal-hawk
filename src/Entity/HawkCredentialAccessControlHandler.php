@@ -20,10 +20,8 @@ class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
   /**
    * {@inheritdoc}
    */
-  protected function checkAccess(EntityInterface $entity, $operation, $langcode, AccountInterface $account) {
-    /** @var \Drupal\hawk_auth\Entity\HawkCredentialInterface $entity */
-
-    if ($operation == 'delete') {
+  protected function checkAccess(HawkCredentialInterface $entity, $operation, $langcode, AccountInterface $account) {
+    if ($operation == 'edit' || $operation == 'delete') {
       $user = $entity->getOwner();
 
       return AccessResult::allowedIf(

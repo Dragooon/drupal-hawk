@@ -24,6 +24,7 @@ use Drupal\user\UserInterface;
  *     "storage_schema" = "Drupal\hawk_auth\Entity\HawkCredentialStorageSchema",
  *     "form" = {
  *        "delete" = "Drupal\hawk_auth\Form\HawkDeleteCredentialForm",
+ *        "permissions" = "Drupal\hawk_auth\Form\HawkPermissionsForm",
  *     },
  *   },
  *   base_table = "hawk_credentials",

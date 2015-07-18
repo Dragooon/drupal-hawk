@@ -23,10 +23,21 @@ hawk_auth.user_credential_delete:
   defaults:
     _entity_form: 'hawk_credential.delete'
   requirements:
-    _entity_access: 'hawk_credential.delete'
+    _entity_access: 'hawk_credential.edit'
   options:
     _admin_route: TRUE
     parameters:
       hawk_credential:
         type: entity:hawk_credential
 
+hawk_auth.user_credential_permissions:
+  path: 'hawk/credential/{hawk_credential}/permissions'
+  defaults:
+    _entity_form: 'hawk_credential.permissions'
+  requirements:
+    _entity_access: 'hawk_credential.edit'
+  options:
+    _admin_route: true
+    parameters:
+      hawk_credential:
+        type: entity:hawk_credential
