@@ -50,7 +50,7 @@ class CredentialsProvider implements CredentialsProviderInterface {
       throw new CredentialsNotFoundException($id . ' is not a valid credential ID');
     }
 
-    return new Credentials($credential->getKeySecret(), $credential->getKeyAlgo(), $credential->id());
+    return $credential;
   }
 
 }

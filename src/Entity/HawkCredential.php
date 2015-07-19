@@ -7,6 +7,7 @@
 
 namespace Drupal\hawk_auth\Entity;
 
+use Dragooon\Hawk\Credentials\CredentialsInterface;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -33,7 +34,7 @@ use Drupal\user\UserInterface;
  *   },
  * )
  */
-class HawkCredential extends ContentEntityBase implements HawkCredentialInterface {
+class HawkCredential extends ContentEntityBase implements HawkCredentialInterface, CredentialsInterface {
 
   /**
    * {@inheritdoc}
@@ -115,6 +116,20 @@ class HawkCredential extends ContentEntityBase implements HawkCredentialInterfac
    */
   public function revokesPermission($permission) {
     return in_array($permission, $this->getRevokePermissions());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function key() {
+    return $this->getKeySecret();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function algorithm() {
+    return $this->getKeyAlgo();
   }
 
   /**
