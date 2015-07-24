@@ -14,9 +14,12 @@ use Drupal\Core\Routing\Access\AccessInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
+use Drupal\hawk_auth\HawkAuthCredentialsViewEvent;
+use Drupal\hawk_auth\HawkAuthEvents;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\user\UserInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -32,13 +35,23 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
   protected $hawkCredentialStorage;
 
   /**
+   * Event dispatcher.
+   *
+   * @var EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+
+  /**
    * Constructs Hawk controller object.
    *
    * @param HawkCredentialStorageInterface $hawk_credential_storage
    *   Storage model for managing Hawk Credentials' entities.
+   * @param EventDispatcherInterface $event_dispatcher
+   *   Event dispatcher.
    */
-  public function __construct(HawkCredentialStorageInterface $hawk_credential_storage) {
+  public function __construct(HawkCredentialStorageInterface $hawk_credential_storage, EventDispatcherInterface $event_dispatcher) {
     $this->hawkCredentialStorage = $hawk_credential_storage;
+    $this->eventDispatcher = $event_dispatcher;
   }
 
   /**
@@ -49,7 +62,8 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
     $entity_manager = $container->get('entity.manager');
 
     return new static(
-      $entity_manager->getStorage('hawk_credential')
+      $entity_manager->getStorage('hawk_credential'),
+      $container->get('event_dispatcher')
     );
   }
 
@@ -109,6 +123,10 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
         ],
       ];
     }
+
+    $event = new HawkAuthCredentialsViewEvent($user, $credentials, $list);
+    $this->eventDispatcher->dispatch(HawkAuthEvents::VIEW_CREDENTIALS, $event);
+    $list = $event->getBuild();
 
     return $list;
   }
