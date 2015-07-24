@@ -28,7 +28,7 @@ services:
       - { name: hawk_time_provider }
   hawk_auth.nonce_validator:
     class: Drupal\hawk_auth\Nonce\NonceValidator
-    arguments: [ '@cache.hawk' ]
+    arguments: [ '@cache.backend.database' ]
     tags:
       - { name: hawk_nonce_validator }
   hawk_auth.page_cache_request_policy.disallow_hawk_requests:
@@ -37,9 +37,4 @@ services:
     arguments: [ '@hawk_auth.server' ]
     tags:
       - { name: page_cache_request_policy }
-  cache.hawk:
-    class: Drupal\Core\Cache\CacheBackendInterface
-    tags:
-      - { name: cache.bin }
-    factory: cache_factory:get
-    arguments: [hawk]
+

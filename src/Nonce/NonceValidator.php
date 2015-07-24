@@ -8,7 +8,8 @@
 namespace Drupal\hawk_auth\Nonce;
 
 use Dragooon\Hawk\Nonce\NonceValidatorInterface;
-use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Cache\DatabaseBackend;
+use Drupal\Core\Cache\DatabaseBackendFactory;
 
 /**
  * Validator for nonce values during hawk requests.
@@ -18,18 +19,18 @@ class NonceValidator implements NonceValidatorInterface {
   /**
    * Cache (hawk) bin.
    *
-   * @var CacheBackendInterface $cache
+   * @var DatabaseBackend $cache
    */
   protected $cache;
 
   /**
    * Constructs an NonceValidator object.
    *
-   * @param CacheBackendInterface $cache
+   * @param DatabaseBackendFactory $cache_factory
    *   Hawk cache bin.
    */
-  public function __construct(CacheBackendInterface $cache) {
-    $this->cache = $cache;
+  public function __construct(DatabaseBackendFactory $cache_factory) {
+    $this->cache = $cache_factory->get('hawk');
   }
 
   /**
