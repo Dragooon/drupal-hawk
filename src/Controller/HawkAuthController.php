@@ -102,7 +102,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
     ];
 
     foreach ($credentials as $credential) {
-      $list['credentials']['#rows'][] = [
+      $list['credentials']['#rows'][$credential->id()] = [
         'key_id' => $credential->id(),
         'key_secret' => $credential->getKeySecret(),
         'key_algo' => $credential->getKeyAlgo(),

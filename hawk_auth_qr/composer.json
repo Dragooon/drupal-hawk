@@ -1,6 +1,6 @@
 {
-  "name": "Drupal/hawk",
-  "description": "Hawk Auth",
+  "name": "Drupal/hawk_qr",
+  "description": "Hawk Auth QR",
   "keywords": [
     "hawk",
     "authentication",
@@ -19,16 +19,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "Drupal\\hawk_auth\\": "src"
+      "Drupal\\hawk_auth_qr\\": "src"
     }
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/Dragooon/php-hawk"
-    }
-  ],
   "require": {
-    "Dragooon/hawk": "dev-master"
+    "endroid/qrcode": "dev-master"
   }
 }
