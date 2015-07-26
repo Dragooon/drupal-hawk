@@ -3,7 +3,7 @@ hawk_auth.user_credential:
   defaults:
     _controller: '\Drupal\hawk_auth\Controller\HawkAuthController::credential'
   requirements:
-    _custom_access: '\Drupal\hawk_auth\Controller\HawkAuthController::access'
+    _custom_access: '\Drupal\hawk_auth\Controller\HawkAuthController::accessView'
   options:
     _admin_route: TRUE
 
@@ -26,9 +26,6 @@ hawk_auth.user_credential_delete:
     _entity_access: 'hawk_credential.edit'
   options:
     _admin_route: TRUE
-    parameters:
-      hawk_credential:
-        type: entity:hawk_credential
 
 hawk_auth.user_credential_permissions:
   path: 'hawk/credential/{hawk_credential}/permissions'
@@ -38,6 +35,3 @@ hawk_auth.user_credential_permissions:
     _entity_access: 'hawk_credential.edit'
   options:
     _admin_route: true
-    parameters:
-      hawk_credential:
-        type: entity:hawk_credential
