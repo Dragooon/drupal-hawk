@@ -34,7 +34,6 @@ class HawkAuthQrEventSubscriber implements EventSubscriberInterface {
    */
   public function onViewCredentials(HawkAuthCredentialsViewEvent $event) {
     $list = $event->getBuild();
-    $credentials = $event->getCredentials();
     foreach ($list['credentials']['#rows'] as $id => &$row) {
       $row['operations']['data']['#links'] = array_merge([
         'qr' => [
