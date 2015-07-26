@@ -13,7 +13,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\hawk_auth\Controller\HawkAuthController;
 use Drupal\hawk_auth\Entity\HawkCredentialInterface;
-use Drupal\hawk_auth_qr\Resonse\HawkAuthQrImageResponse;
+use Drupal\hawk_auth_qr\Response\HawkAuthQrImageResponse;
 use Endroid\QrCode\QrCode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;

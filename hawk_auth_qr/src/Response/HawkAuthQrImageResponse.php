@@ -5,7 +5,7 @@
  * Contains \Drupal\hawk_auth_qr\Response\HawkAuthQrImageResponse.
  */
 
-namespace Drupal\hawk_auth_qr\Resonse;
+namespace Drupal\hawk_auth_qr\Response;
 
 use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 use Endroid\QrCode\QrCode;
@@ -47,4 +47,30 @@ class HawkAuthQrImageResponse extends Response {
     $this->credential = $credential;
     $this->qrCode = $qr_code;
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function sendHeaders() {
+    $this->headers->set('content-type', 'image/png');
+    parent::sendHeaders();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function sendContent() {
+    $this->qrCode->setSize(300);
+    $this->qrCode->setText(json_encode([
+      'id' => $this->credential->id(),
+      'key' => $this->credential->getKeySecret(),
+      'algo' => $this->credential->getKeyAlgo(),
+    ]));
+    $this->qrCode->setLabel(t('Hawk Credential #!id: !name', [
+      '!id' => $this->credential->id(),
+      '!name' => $this->credential->getOwner()->getUsername()
+    ]));
+    $this->qrCode->render();
+  }
+
 }
