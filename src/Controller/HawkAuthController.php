@@ -144,16 +144,30 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    * @return AccessResultInterface
    *   Access Result whether the user can see the credentials or not.
    */
-  public function access(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {
-    if ($route_match->getRouteName() == 'hawk_auth.user_credential') {
-      /** @var AccountInterface $user */
-      $user = $route_match->getParameter('user');
+  public function accessView(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {
+    /** @var AccountInterface $user */
+    $user = $route_match->getParameter('user');
 
-      return AccessResult::allowedIf(
-        $account->hasPermission('administer hawk') ||
-        ($account->hasPermission('access own hawk credentials') && $account->id() == $user->id())
-      );
-    }
+    return AccessResult::allowedIf(
+      $this->checkUserAccessForView($user, $account)
+    );
   }
 
+  /**
+   * Internal function for checking view permission for the current user.
+   *
+   * @param AccountInterface $user_owner
+   *   The user whose credentials are being viewed.
+   * @param AccountInterface $user_viewer
+   *   The user who is viewing the credentials.
+   *
+   * @return bool
+   *   True or false.
+   */
+  public static function checkUserAccessForView(AccountInterface $user_owner, AccountInterface $user_viewer) {
+    return
+      $user_viewer->hasPermission('administer hawk') ||
+      ($user_viewer->hasPermission('access own hawk credentials') && $user_viewer->id() == $user_owner->id());
+
+  }
 }
