@@ -4,3 +4,6 @@ description: "Allow users to see QR codes for their credentials"
 package: Web services
 version: VERSION
 core: 8.x
+dependencies:
+  - hawk_auth
+  - composer_manager
