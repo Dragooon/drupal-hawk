@@ -51,7 +51,7 @@ class HawkDeleteCredentialForm extends ContentEntityDeleteForm {
 
     $credential->delete();
 
-    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $this->currentUser()->id()]);
+    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $credential->getOwnerId()]);
   }
 
 }
