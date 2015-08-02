@@ -10,6 +10,8 @@ namespace Drupal\hawk_auth\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
+use Drupal\user\UserInterface;
+use Drupal\user\UserStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -25,13 +27,23 @@ class HawkAddCredentialForm extends FormBase {
   protected $hawkCredentialStorage;
 
   /**
+   * Users'' storage.
+   *
+   * @var UserStorageInterface
+   */
+  protected $userStorage;
+
+  /**
    * Constructs Hawk controller object.
    *
    * @param HawkCredentialStorageInterface $hawk_credential_storage
    *   Storage for Hawk Credentials' entities.
+   * @param UserStorageInterface $user_storage
+   *   Storage for users.
    */
-  public function __construct(HawkCredentialStorageInterface $hawk_credential_storage) {
+  public function __construct(HawkCredentialStorageInterface $hawk_credential_storage, UserStorageInterface $user_storage) {
     $this->hawkCredentialStorage = $hawk_credential_storage;
+    $this->userStorage = $user_storage;
   }
 
   /**
@@ -42,7 +54,8 @@ class HawkAddCredentialForm extends FormBase {
     $entity_manager = $container->get('entity.manager');
 
     return new static(
-      $entity_manager->getStorage('hawk_credential')
+      $entity_manager->getStorage('hawk_credential'),
+      $entity_manager->getStorage('user')
     );
   }
 
@@ -93,14 +106,19 @@ class HawkAddCredentialForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $user = $this->getRouteMatch()->getParameter('user');
+    if (!($user instanceof UserInterface)) {
+      $user = $this->userStorage->load($user);
+    }
+
     $new_credential = $this->hawkCredentialStorage->create([
       'key_secret' => user_password(32),
       'key_algo' => $form_state->getValue('key_algo'),
-      'uid' => $this->currentUser()->id(),
+      'uid' => $user->id(),
     ]);
     $new_credential->save();
 
-    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $this->currentUser()->id()]);
+    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $user->id()]);
   }
 
 }

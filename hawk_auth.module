@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Implements hook_help().
@@ -44,4 +45,38 @@ function hawk_auth_help($route_name, RouteMatchInterface $route_match) {
       }
       return $output;
   }
+}
+
+/**
+ * Returns the maximum number of credentials an user can have.
+ *
+ * @param AccountInterface $account
+ *   The account to check
+ *
+ * @return int
+ *   Returns 0 if unlimited.
+ */
+function hawk_get_max_credentials(AccountInterface $account) {
+  $config = \Drupal::config('hawk.roles');
+  $role_storage = \Drupal::getContainer()->get('entity.manager')->getStorage('user_role');
+
+  /**
+   * @var \Drupal\user\RoleInterface[] $roles
+   */
+  $roles = $role_storage->loadMultiple($account->getRoles());
+
+  $max = 0;
+  foreach ($roles as $role) {
+    if ($role->hasPermission('administer hawk')) {
+      $max = 0;
+      break;
+    }
+
+    $limit = $config->get('limit.' . $role->id());
+    if (!empty($limit) && $limit > $max) {
+      $max = $limit;
+    }
+  }
+
+  return $max;
 }

@@ -16,6 +16,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\hawk_auth\HawkAuthCredentialsViewEvent;
 use Drupal\hawk_auth\HawkAuthEvents;
+use Drupal\user\UserStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\user\UserInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialStorageInterface;
@@ -35,6 +36,14 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
   protected $hawkCredentialStorage;
 
   /**
+   * Users'' storage.
+   *
+   * @var UserStorageInterface
+   */
+  protected $userStorage;
+
+
+  /**
    * Event dispatcher.
    *
    * @var EventDispatcherInterface
@@ -46,12 +55,15 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
    *
    * @param HawkCredentialStorageInterface $hawk_credential_storage
    *   Storage model for managing Hawk Credentials' entities.
+   * @param UserStorage $user_storage
+   *   Storage model for users.
    * @param EventDispatcherInterface $event_dispatcher
    *   Event dispatcher.
    */
-  public function __construct(HawkCredentialStorageInterface $hawk_credential_storage, EventDispatcherInterface $event_dispatcher) {
+  public function __construct(HawkCredentialStorageInterface $hawk_credential_storage, UserStorageInterface $user_storage, EventDispatcherInterface $event_dispatcher) {
     $this->hawkCredentialStorage = $hawk_credential_storage;
     $this->eventDispatcher = $event_dispatcher;
+    $this->userStorage = $user_storage;
   }
 
   /**
@@ -63,6 +75,7 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
 
     return new static(
       $entity_manager->getStorage('hawk_credential'),
+      $entity_manager->getStorage('user'),
       $container->get('event_dispatcher')
     );
   }
@@ -170,4 +183,45 @@ class HawkAuthController extends ControllerBase implements AccessInterface {
       ($user_viewer->hasPermission('access own hawk credentials') && $user_viewer->id() == $user_owner->id());
 
   }
+
+  /**
+   * Checks whether an user can create credentials or not.
+   *
+   * @param Route $route
+   *    The route to check against.
+   * @param RouteMatchInterface $route_match
+   *    The current route being accessed.
+   * @param AccountInterface $account
+   *    The account currently logged in.
+   *
+   * @return AccessResultInterface
+   *   The result of check.
+   */
+  public function accessCreate(Route $route, RouteMatchInterface $route_match, AccountInterface $account) {
+    /** @var AccountInterface $user */
+    $user = $route_match->getParameter('user');
+    if (!($user instanceof AccountInterface)) {
+      $user = $this->userStorage->load($user);
+      if (empty($user)) {
+        return AccessResult::forbidden();
+      }
+    }
+
+    if ($account->hasPermission('administer hawk')) {
+      return AccessResult::allowed();
+    }
+    else if ($account->hasPermission('add own hawk credentials') && $user->id() == $account->id()) {
+      $max = hawk_get_max_credentials($account);
+      if ($max > 0) {
+        $credentials = $this->hawkCredentialStorage->loadByProperties(['uid' => $account->id()]);
+        $count = count($credentials);
+        if ($count < $max) {
+          return AccessResult::allowed();
+        }
+      }
+    }
+
+    return AccessResult::forbidden();
+  }
+
 }
