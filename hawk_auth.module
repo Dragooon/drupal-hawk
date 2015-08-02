@@ -25,6 +25,18 @@ function hawk_auth_help($route_name, RouteMatchInterface $route_match) {
       $output = '<p>' . t('This page lists all the valid Hawk Credentials associated with your account.
                            When providing ID for the client, use the ID listed against the key secret and not your
                            account ID.') . '</p>';
+
+      $user = $route_match->getParameter('user');
+      if (hawk_get_max_credentials($user) > 0) {
+        $output .= '
+          <div role="contentinfo" aria-label="' . t('Warning') . '" class="messages messages--warning">
+              <div role="alert">
+                      <h2 class="visually-hidden">' . t('Warning') . '</h2>
+                        ' . t((Drupal::currentUser()->id() == $user ? 'You' : 'This user') . ' can have a maximum of ' . hawk_get_max_credentials($user) . ' credentials') . '
+                    </div>
+          </div>';
+      }
+
       return $output;
 
     case 'hawk_auth.user_credential_permissions':
@@ -75,6 +87,10 @@ function hawk_get_max_credentials(AccountInterface $account) {
     $limit = $config->get('limit.' . $role->id());
     if (!empty($limit) && $limit > $max) {
       $max = $limit;
+    }
+    else if ($limit === 0) {
+      $max = 0;
+      break;
     }
   }
 
