@@ -26,7 +26,7 @@ class HawkCredentialAccessControlHandler extends EntityAccessControlHandler {
 
       return AccessResult::allowedIf(
         $account->hasPermission('administer hawk') ||
-        ($account->hasPermission('access own hawk credentials') && $account->id() == $user->id())
+        ($account->hasPermission($operation . ' own hawk credentials') && $account->id() == $user->id())
       );
     }
     else {

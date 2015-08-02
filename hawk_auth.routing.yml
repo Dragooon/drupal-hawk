@@ -23,7 +23,7 @@ hawk_auth.user_credential_delete:
   defaults:
     _entity_form: 'hawk_credential.delete'
   requirements:
-    _entity_access: 'hawk_credential.edit'
+    _entity_access: 'hawk_credential.delete'
   options:
     _admin_route: TRUE
 

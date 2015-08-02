@@ -83,10 +83,6 @@ class HawkAuth implements AuthenticationProviderInterface {
       /** @var HawkCredentialInterface $credentials */
       $credentials = $this->entityManager->getStorage('hawk_credential')->load($response->credentials()->id());
 
-      if (!$credentials->getOwner()->hasPermission('access own hawk credentials')) {
-        return NULL;
-      }
-
       $revoke_permissions = $credentials->getRevokePermissions();
       if (!empty($revoke_permissions)) {
         // We can't let the user save roles if we're revoking permissions.
