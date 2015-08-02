@@ -96,7 +96,7 @@ class HawkPermissionsForm extends ContentEntityForm {
 
     // User's with ID 1 cannot revoke permissions due to the way Drupal
     // handles permission checks.
-    if ($this->currentUser()->id() == 1) {
+    if ($credential->getOwner()->id() == 1) {
       return $form;
     }
 
@@ -126,7 +126,7 @@ class HawkPermissionsForm extends ContentEntityForm {
       ));
 
       foreach ($permissions as $perm => $perm_item) {
-        if (!$this->currentUser()->hasPermission($perm)) {
+        if (!$credential->getOwner()->hasPermission($perm)) {
           continue;
         }
 
@@ -184,7 +184,7 @@ class HawkPermissionsForm extends ContentEntityForm {
     $permissions_list = $form_state->getValue('permissions');
     $revoke_permissions = array();
     foreach ($permissions_list as $perm => $status) {
-      if (!empty($status[0]) && $this->currentUser()->hasPermission($perm)) {
+      if (!empty($status[0]) && $credential->getOwner()->hasPermission($perm)) {
         $revoke_permissions[] = $perm;
       }
     }
@@ -192,7 +192,7 @@ class HawkPermissionsForm extends ContentEntityForm {
     $credential->setRevokePermissions($revoke_permissions);
     $credential->save();
 
-    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $this->currentUser()->id()]);
+    $form_state->setRedirect('hawk_auth.user_credential', ['user' => $credential->getOwner()->id()]);
   }
 
 }
