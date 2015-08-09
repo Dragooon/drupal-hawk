@@ -24,7 +24,7 @@ class HawkAuthTest extends WebTestBase {
      *
      * @var array
      */
-    public static $modules = ['hawk_auth', 'router_test', 'locale'];
+    public static $modules = ['hawk_auth', 'hawk_route_tests'];
 
     /**
      * Test hawk auth authentication.
@@ -33,10 +33,10 @@ class HawkAuthTest extends WebTestBase {
         $account = $this->drupalCreateUser();
         $credential = $this->getHawkCredentials($account);
 
-        $url = Url::fromRoute('router_test.11');
+        $url = Url::fromRoute('hawk_route_test.user');
 
         $this->hawkAuthGet($url, $credential);
-        $this->assertText($account->getUsername(), 'Account name is displaye.d');
+        $this->assertText($account->getUsername(), 'Account name is displayed');
         $this->assertResponse('200', 'HTTP Response is okay');
         $this->curlClose();
         $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'));
