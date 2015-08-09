@@ -7,13 +7,14 @@
 
 namespace Drupal\hawk_auth\Entity;
 
+use Dragooon\Hawk\Credentials\CredentialsInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\user\UserInterface;
 
 /**
  * Interface defines individual hawk credential's model.
  */
-interface HawkCredentialInterface extends ContentEntityInterface {
+interface HawkCredentialInterface extends ContentEntityInterface, CredentialsInterface {
 
   /**
    * Returns the ID of the User this credential belongs to.

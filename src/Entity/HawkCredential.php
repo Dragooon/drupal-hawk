@@ -34,7 +34,7 @@ use Drupal\user\UserInterface;
  *   },
  * )
  */
-class HawkCredential extends ContentEntityBase implements HawkCredentialInterface, CredentialsInterface {
+class HawkCredential extends ContentEntityBase implements HawkCredentialInterface {
 
   /**
    * {@inheritdoc}
