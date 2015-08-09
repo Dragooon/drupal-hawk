@@ -77,7 +77,7 @@ class HawkConfigForm extends ConfigFormBase {
     $form['roles'] = [
       '#type' => 'details',
       '#title' => t('Role Limitations'),
-      '#description' => t('Maximum number of credentials an user belonging to each role can have, if an user has' .
+      '#description' => t('Maximum number of credentials an user belonging to each role can have, if an user has ' .
                           'multiple roles, the maximum value is taken. Set to 0 for no limit.'),
       '#open' => TRUE,
     ];
