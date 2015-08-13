@@ -17,37 +17,37 @@ use Drupal\Core\Url;
  */
 class HawkAuthTest extends WebTestBase {
 
-    use HawkAuthTestTrait;
+  use HawkAuthTestTrait;
 
-    /**
-     * Modules installed for all tests.
-     *
-     * @var array
-     */
-    public static $modules = ['hawk_auth', 'hawk_route_tests'];
+  /**
+   * Modules installed for all tests.
+   *
+   * @var array
+   */
+  public static $modules = ['hawk_auth', 'hawk_route_tests'];
 
-    /**
-     * Test hawk auth authentication.
-     */
-    public function testHawkAuth() {
-        $account = $this->drupalCreateUser();
-        $credential = $this->getHawkCredentials($account);
+  /**
+   * Test hawk auth authentication.
+   */
+  public function testHawkAuth() {
+    $account = $this->drupalCreateUser();
+    $credential = $this->getHawkCredentials($account);
 
-        $url = Url::fromRoute('hawk_route_test.user');
+    $url = Url::fromRoute('hawk_route_test.user');
 
-        $this->hawkAuthGet($url, $credential);
-        $this->assertText($account->getUsername(), 'Account name is displayed');
-        $this->assertResponse('200', 'HTTP Response is okay');
-        $this->curlClose();
-        $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'));
-        $this->assertIdentical(strpos($this->drupalGetHeader('Cache-Control'), 'public'), FALSE, 'Cache-Control is not set to public');
+    $this->hawkAuthGet($url, $credential);
+    $this->assertText($account->getUsername(), 'Account name is displayed');
+    $this->assertResponse('200', 'HTTP Response is okay');
+    $this->curlClose();
+    $this->assertFalse($this->drupalGetHeader('X-Drupal-Cache'));
+    $this->assertIdentical(strpos($this->drupalGetHeader('Cache-Control'), 'public'), FALSE, 'Cache-Control is not set to public');
 
-        $wrong_credential = clone $credential;
-        $wrong_credential->setKeySecret('wrong_key');
+    $wrong_credential = clone $credential;
+    $wrong_credential->setKeySecret('wrong_key');
 
-        $this->hawkAuthGet($url, $wrong_credential);
-        $this->assertNoText($account->getUsername(), 'Account name should not be displayed.');
-        $this->assertResponse('403', 'HTTP Access is not granted');
-        $this->curlClose();
-    }
+    $this->hawkAuthGet($url, $wrong_credential);
+    $this->assertNoText($account->getUsername(), 'Account name should not be displayed.');
+    $this->assertResponse('403', 'HTTP Access is not granted');
+    $this->curlClose();
+  }
 }
