@@ -8,6 +8,7 @@
 namespace Drupal\hawk_auth\Tests;
 use Dragooon\Hawk\Client\ClientBuilder;
 use Dragooon\Hawk\Credentials\CredentialsInterface;
+use Dragooon\Hawk\Header\Header;
 use Drupal\Core\Url;
 use Drupal\hawk_auth\Entity\HawkCredential;
 use Drupal\hawk_auth\Entity\HawkCredentialInterface;
@@ -32,7 +33,9 @@ trait HawkAuthTestTrait {
      *   The retrieved HTML.
      */
     public function hawkAuthGet($path, HawkCredentialInterface $credentials, array $options = []) {
-        return $this->drupalGet($path, $options, $this->getHawkAuthHeaders($path, $credentials));
+        $header = isset($options['header']) && $options['header'] instanceof Header ? $options['header']
+                    : $this->getHawkAuthHeader($path, $credentials);
+        return $this->drupalGet($path, $options, [$header->fieldName() . ': ' . $header->fieldValue()]);
     }
 
     /**
@@ -47,10 +50,10 @@ trait HawkAuthTestTrait {
      * @param array $options
      *   Additional Hawk options.
      *
-     * @return array
+     * @return Header
      *   List of headers for this Hawk request
      */
-    protected function getHawkAuthHeaders($path, CredentialsInterface $credentials, $method = 'GET', array $options = []) {
+    protected function getHawkAuthHeader($path, CredentialsInterface $credentials, $method = 'GET', array $options = []) {
         if ($path instanceof Url) {
             $path->setAbsolute(TRUE);
             $path = $path->toString();
@@ -58,8 +61,9 @@ trait HawkAuthTestTrait {
 
         $client = ClientBuilder::create()->build();
         $request = $client->createRequest($credentials, $path, $method, $options);
-        return [$request->header()->fieldName() . ': ' . $request->header()->fieldValue()];
+        return $request->header();
     }
+
 
     /**
      * Generates hawk credentials for an user.
