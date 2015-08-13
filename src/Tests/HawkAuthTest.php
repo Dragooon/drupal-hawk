@@ -7,7 +7,6 @@
 
 namespace Drupal\hawk_auth\Tests;
 
-use Drupal\Core\Session\AccountInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 use Drupal\simpletest\WebTestBase;
 use Drupal\Core\Url;
@@ -49,7 +48,7 @@ class HawkAuthTest extends WebTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->account = $this->drupalCreateUser();
+    $this->account = $this->drupalCreateUser(['administer hawk']);
     $this->credential = $this->getHawkCredentials($this->account);
   }
 
@@ -76,7 +75,7 @@ class HawkAuthTest extends WebTestBase {
   }
 
   /**
-   * Tests for protection against replay attacks.
+   * Test for protection against replay attacks.
    */
   public function testHawkReplayAttack() {
     $url = Url::fromRoute('hawk_route_test.user');
@@ -90,4 +89,23 @@ class HawkAuthTest extends WebTestBase {
     $this->assertResponse('403', 'HTTP Response is okay for nonce validation failure');
     $this->assertNoText($this->account->getUsername(), 'Account name should not be displayed.');
   }
+
+  /**
+   * Test for revoke permissions
+   */
+  public function testHawkRevokePermission() {
+    $url = Url::fromRoute('hawk_route_test.permission_administer_hawk');
+
+    $this->hawkAuthGet($url, $this->credential);
+    $this->assertText($this->account->getUsername(), 'Account name is displayed for permission check');
+    $this->assertResponse('200', 'HTTP Response is okay');
+
+    $this->credential->setRevokePermissions(['administer hawk']);
+    $this->credential->save();
+
+    $this->hawkAuthGet($url, $this->credential);
+    $this->assertNoText($this->account->getUsername(), 'Account should not be displayed');
+    $this->assertResponse('403', 'HTTP Response is okay');
+  }
+
 }
