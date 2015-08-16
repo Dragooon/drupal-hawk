@@ -9,13 +9,16 @@ namespace Drupal\hawk_auth\Authentication\Provider;
 
 use Dragooon\Hawk\Server\ServerInterface;
 use Dragooon\Hawk\Server\UnauthorizedException;
+use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Authentication\AuthenticationProviderInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\hawk_auth\Entity\HawkCredentialInterface;
 use Drupal\migrate_drupal\Tests\Table\d6\Permission;
 use Drupal\user\PermissionHandlerInterface;
 use Drupal\user\RoleInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 /**
  * Hawk Authentication provider.
@@ -44,6 +47,13 @@ class HawkAuth implements AuthenticationProviderInterface {
   protected $permissionHandler;
 
   /**
+   * The config factory.
+   *
+   * @var ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * Constructs a HawkAuth object.
    *
    * @param ServerInterface $server
@@ -52,11 +62,14 @@ class HawkAuth implements AuthenticationProviderInterface {
    *   Entity Manager.
    * @param PermissionHandlerInterface $permission_handler
    *   Permission handler.
+   * @param ConfigFactoryInterface $config_factory
+   *   Configuration factory.
    */
-  public function __construct(ServerInterface $server, EntityManagerInterface $entity_manager, PermissionHandlerInterface $permission_handler) {
+  public function __construct(ServerInterface $server, EntityManagerInterface $entity_manager, PermissionHandlerInterface $permission_handler, ConfigFactoryInterface $config_factory) {
     $this->server = $server;
     $this->entityManager = $entity_manager;
     $this->permissionHandler = $permission_handler;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -118,6 +131,17 @@ class HawkAuth implements AuthenticationProviderInterface {
     catch (UnauthorizedException $e) {
       return NULL;
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function challengeException(Request $request, \Exception $previous) {
+    $site_name = $this->configFactory->get('system.site')->get('name');
+    $challenge = SafeMarkup::format('Hawk realm="@realm"', array(
+      '@realm' => !empty($site_name) ? $site_name : 'Access restricted',
+    ));
+    return new UnauthorizedHttpException($challenge, 'No authentication credentials provided.', $previous);
   }
 
 }
