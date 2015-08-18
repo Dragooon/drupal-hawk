@@ -10,6 +10,7 @@ namespace Drupal\hawk_auth\Authentication\Provider;
 use Dragooon\Hawk\Server\ServerInterface;
 use Dragooon\Hawk\Server\UnauthorizedException;
 use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Core\Authentication\AuthenticationProviderChallengeInterface;
 use Drupal\Core\Authentication\AuthenticationProviderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
@@ -23,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 /**
  * Hawk Authentication provider.
  */
-class HawkAuth implements AuthenticationProviderInterface {
+class HawkAuth implements AuthenticationProviderInterface, AuthenticationProviderChallengeInterface {
 
   /**
    * Server interface for Hawk.
